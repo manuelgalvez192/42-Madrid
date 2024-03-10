@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 #include "ft_print_number.c"
+#include <cstdarg>
+#include <stdarg.h>
 
 void	print_char(va_list *args)
 {
@@ -23,7 +25,7 @@ void	print_char(va_list *args)
 void	print_string(va_list *args)
 {
 	char	*c;
-	*c = va_arg(*args, *char);
+	*c = va_arg(*args, char);
 	while (*c)
 	{
 		write(1, c, 1);
@@ -45,6 +47,17 @@ void	select_case(char const *format, va_list args)
 		print_decimal(&args);
 	else if (*format == 'p')
 		print_pointer(&args);
+	else if (*format == 'i')
+		print_int(&args);
+	else if (*format == 'u')
+		print_unsigned_decimal(&args);
+	else if (*format == 'x')
+		print_hexa_min(&args);
+	else if (*format == 'X')
+		print_hexa_max(&args);
+	else if (*format == '%')
+		print_percentage(&args);
+		
 }
 
 int	ft_printf(char const *format, ...)
@@ -61,5 +74,5 @@ int	ft_printf(char const *format, ...)
 		}
 		format++;
 	}
-	va_end;
+	va_end(args);
 }
