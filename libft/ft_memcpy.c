@@ -29,14 +29,3 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
-
-/*int	main(void)
-{
-	char c[5] = "aaaa";
-	char q[5] = "aaaa";
-	ft_memset(c, 'd', 3);
-	memset(q, 'd', 3);
-	printf("%s \n", c);
-	printf("%s \n", q);
-	return (0);
-}*/
