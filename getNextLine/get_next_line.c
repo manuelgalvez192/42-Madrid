@@ -12,60 +12,36 @@
 
 #include "get_next_line.h"
 
-int check_for_new_line(char *str)
-{
-    int count = 0;
-    while(str[count++])
-    {
-        if(str[count] == '\n')
-            return(1);
-    }
-    return(0);
-}
-
 char	*get_next_line(int fd)
 {
-    char    *buffer;
-    char    *line = " ";
-    char    *character;
-    int return_val = 0;
+    static char    *buffer;
+    char    *line;
+    size_t  bytes_read;
+    ssize_t i;
 
-    buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-    while(return_val != 6)
-    {   
-        line = ft_strjoin(line, buffer);
-        read(fd, buffer, BUFFER_SIZE);
-        return_val++;
-        printf("%s", buffer);
-    }
-    printf("\n%s\n", line);
-    return(buffer);
-}
-/*
-    //
-    line = malloc(sizeof(char *));
-    //character = malloc(sizeof(char *));
-    while(check_for_new_line(line) == 0)
+    buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+    line = ft_calloc(1, sizeof(char));
+
+    if (fd < 0 || !buffer || !line)
+        return (NULL);
+    while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
     {
-        buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-        return_val = read(fd, buffer, BUFFER_SIZE);
-        buffer[return_val] = '\0';
         line = ft_strjoin(line, buffer);
-        free(buffer);
-        //printf("%s\n", line);
+        i = 0;
+        while(i < bytes_read)
+        {
+            if (buffer[i] == '\n')
+            {
+                line[i] = '\0';
+                return (line);
+            }
+            if (buffer[i] == '\0')
+            {
+                free(buffer);
+                return (line);
+            }
+            i++;
+        }
     }
     return (line);
 }
-*/
-/*      while(*buffer)
-        {
-            *character = *buffer;
-            if(*character == '\n')
-            {
-                return (line);
-            }
-            printf("the line -> %s\n", line);
-            buffer++;
-        }
-        line = ft_strjoin(line, character);
- */

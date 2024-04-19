@@ -16,13 +16,7 @@
 int    main(void)
 {
     int fd = open("file.txt", O_RDONLY);
-    char *line = get_next_line(fd);
-    /*if (line)
-    {
-        printf("%s", line);
-        free(line);
-    }
-    */
+    printf("%s",get_next_line(fd));
     close(fd);
     return (0);
 }

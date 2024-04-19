@@ -61,3 +61,23 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	dst[dstlen] = '\0';
 	return (len);
 }
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = size * count;
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (0);
+	while (len > 0)
+	{
+		((unsigned char *)ptr)[i] = '\0';
+		i++;
+		len--;
+	}
+	return ((unsigned char *)ptr);
+}
