@@ -13,10 +13,28 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-int    main(void)
+int    main(int argc, char **argv)
 {
-    int fd = open("file.txt", O_RDONLY);
-    printf("%s",get_next_line(fd));
+    char *line;
+    (void)argc;
+
+    int fd = open(argv[1], O_RDONLY);
+    /*while(1)
+    {
+        line = get_next_line(fd);
+        if (!line)
+            break;
+        printf("%s", line);
+        free(line);
+    }*/
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
+    printf("%s", get_next_line(fd));
     close(fd);
     return (0);
 }
