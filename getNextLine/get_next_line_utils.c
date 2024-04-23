@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *c)
 {
-	size_t	i; 
+	size_t	i;
 
 	i = 0;
 	while (c[i] != '\0')
@@ -30,7 +30,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
-	ptr = calloc(((s1len + s2len) + 1), sizeof(char));
+	ptr = ft_calloc(((s1len + s2len) + 1), sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
 	ft_strlcat(ptr, s1, s1len + 1);

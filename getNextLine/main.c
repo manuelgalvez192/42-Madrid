@@ -15,7 +15,6 @@
 
 int    main(int argc, char **argv)
 {
-    char *line;
     (void)argc;
 
     int fd = open(argv[1], O_RDONLY);

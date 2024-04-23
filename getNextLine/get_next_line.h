@@ -23,6 +23,6 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(const char *c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-void    *ft_calloc(size_t count, size_t size);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif
