@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 19:18:13 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/04/08 19:18:15 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:47:33 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFFER_SIZE 5
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -20,6 +23,7 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
+char	*cut_line(char *line);
 size_t	ft_strlen(const char *c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
