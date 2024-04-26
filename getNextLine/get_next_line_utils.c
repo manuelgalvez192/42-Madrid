@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 19:17:53 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/04/25 21:22:07 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:38:21 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strlcat(ptr, s1, s1len + 1);
 	ft_strlcat(ptr, s2, s2len + s1len + 1);
-	free((char *)s1);
+	free ((char *)s1);
 	return (ptr);
 }
 

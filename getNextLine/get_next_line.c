@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 19:17:36 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/04/25 21:27:18 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:45:30 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	char		*line;
+	char		*new_line;
 	size_t		bytes_read;
 	size_t		i;
 
@@ -24,7 +25,9 @@ char	*get_next_line(int fd)
 	line = ft_calloc(1, sizeof(char));
 	if (fd < 0 || !buffer || !line || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = ft_strjoin(line, cut_line(buffer));
+	new_line = cut_line(buffer);
+	line = ft_strjoin(line, new_line);
+	free (new_line);
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	while (bytes_read > 0)
 	{
@@ -36,7 +39,6 @@ char	*get_next_line(int fd)
 			{
 				i = ft_strlen(line) - ft_strlen(buffer) + i;
 				line[i + 1] = '\0';
-				free(buffer);
 				return (line);
 			}
 			i++;
