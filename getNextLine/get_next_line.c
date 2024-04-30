@@ -27,7 +27,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	new_line = cut_line(buffer);
 	line = ft_strjoin(line, new_line);
-	free (new_line);
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	while (bytes_read > 0)
 	{

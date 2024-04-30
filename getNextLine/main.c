@@ -19,24 +19,13 @@ int    main(int argc, char **argv)
     char *line;
 
     int fd = open(argv[1], O_RDONLY);
-    /*while(1)
+    line = "1";
+    while(line)
+        printf("%s", line);
     {
         line = get_next_line(fd);
-        if (!line)
-            break;
-        printf("%s", line);
-        free(line);
-        system("leaks a.out");
-    }*/
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
-    printf("%s", get_next_line(fd));
+    }
+    system("leaks a.out");
     close(fd);
     return (0);
 }
