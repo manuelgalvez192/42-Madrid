@@ -13,19 +13,20 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-int    main(int argc, char **argv)
-{
-    (void)argc;
-    char *line;
+int main() {
+    int fd = open("file.txt", O_RDONLY);
 
-    int fd = open(argv[1], O_RDONLY);
-    line = "1";
-    while(line)
-        printf("%s", line);
+    char *line;
+    while (1) 
     {
         line = get_next_line(fd);
+        if (line == NULL)
+            break;
+        if(!line[0])
+            break;
+        printf("%s", line);
+        free (line);
     }
-    system("leaks a.out");
     close(fd);
-    return (0);
+    return 0;
 }
