@@ -15,18 +15,15 @@
 
 int main() {
 	int fd = open("file.txt", O_RDONLY);
+	int i = 1;
 
 	char *line;
-	do
+	while (i != 0)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
-			printf("FIN\n");
-		else
-			printf("%s", line);
-		free (line);
-	}while (line != NULL);
+		i = printf("%s", line);
+	}
+	free (line);
 	close(fd);
-	system ("leaks a.out");
 	return 0;
 }
