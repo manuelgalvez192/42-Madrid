@@ -31,10 +31,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
 	ptr = ft_calloc(((s1len + s2len) + 1), sizeof(char));
-	if (ptr == NULL)
+	if (!ptr)
 		return (NULL);
 	ft_strlcat(ptr, s1, s1len + 1);
 	ft_strlcat(ptr, s2, s2len + s1len + 1);
+	//free ((char *)s1); 
 	return (ptr);
 }
 
@@ -71,7 +72,7 @@ void	*ft_calloc(size_t count, size_t size)
 	i = 0;
 	len = size * count;
 	ptr = malloc(count * size);
-	if (ptr == NULL)
+	if (!ptr)
 		return (0);
 	while (len > 0)
 	{

@@ -22,8 +22,9 @@ int main() {
 	{
 		line = get_next_line(fd);
 		i = printf("%s", line);
+		free (line);
 	}
-	free (line);
+	line = NULL;
 	close(fd);
 	return 0;
 }
