@@ -23,7 +23,6 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
-void	read_funtion(int fd, char *buffer, char **line);
 size_t	ft_strlen(const char *c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
