@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *c)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2, int flag)
 {
 	char	*ptr;
 	size_t	s1len;
@@ -35,7 +35,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strlcat(ptr, s1, s1len + 1);
 	ft_strlcat(ptr, s2, s2len + s1len + 1);
-	//free ((char *)s1); 
+	if (flag)
+		free ((char *)s1);
 	return (ptr);
 }
 

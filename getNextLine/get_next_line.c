@@ -28,20 +28,20 @@ int	find_new_line(char *buffer)
 
 char	*cut_line(char *line, char **buffer, char *new_line)
 {
-	int	i;
-	int	j;
-	int	len_line;
+	char	*aux;
+	int		i;
+	int		j;
 
-	len_line = ft_strlen(line);
+	aux = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!aux)
+		return (NULL);
 	i = 0;
 	while ((*buffer)[i] != '\n')
 	{
-		line[len_line] = (*buffer)[i];
-		len_line++;
+		aux[i] = (*buffer)[i];
 		i++;
 	}
-	if ((*buffer)[i] == '\n')
-			line[len_line] = '\0';
+	line = ft_strjoin(line, aux, 1);
 	j = 0;
 	while ((*buffer)[i])
 	{
@@ -51,19 +51,17 @@ char	*cut_line(char *line, char **buffer, char *new_line)
 	}
 	while (new_line[j])
 		new_line[j++] = '\0';
-	free (*buffer);
-	*buffer = NULL;
-	printf ("\nMemory --> %p\n", line);
-	return (line);
+	free(*buffer);
+	return (*buffer = NULL, free(aux), line);
 }
 
 char	*free_null(char **buffer, char **new_line)
 {
 	if (*new_line)
-	free (*new_line);
+		free (*new_line);
 	*new_line = NULL;
 	if (*buffer)
-	free (*buffer);
+		free (*buffer);
 	*buffer = NULL;
 	return (NULL);
 }
@@ -78,17 +76,19 @@ char	*get_next_line(int fd)
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!new_line)
 		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	line = ft_strjoin(new_line, buffer);
+	line = ft_strjoin(new_line, buffer, 0);
 	if (fd < 0 || !buffer || !new_line || BUFFER_SIZE <= 0)
 		return (free_null(&buffer, &new_line));
-	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	while (bytes_read > 0)
 	{
 		if (find_new_line(buffer))
 		{
 			line = cut_line(line, &buffer, new_line);
 			return (line);
 		}
-		line = ft_strjoin(line, buffer);
+		line = ft_strjoin(line, buffer, 1);
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
 	free_null(&buffer, &new_line);
 	return (line);
