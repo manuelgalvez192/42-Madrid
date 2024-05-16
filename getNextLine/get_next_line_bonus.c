@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                              :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -68,27 +68,27 @@ char	*free_null(char **buffer, char **new_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*new_line;
+	static char	*new_line[256];
 	char		*buffer;
 	char		*line;
 	int			bytes_read;
 
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!new_line)
-		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	line = ft_strjoin(new_line, buffer, 0);
-	if (fd < 0 || !buffer || !new_line || BUFFER_SIZE <= 0)
-		return (free_null(&buffer, &new_line));
+	if (!new_line[fd])
+		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	line = ft_strjoin(new_line[fd], buffer, 0);
+	if (fd < 0 || !buffer || !new_line[fd] || BUFFER_SIZE <= 0)
+		return (free_null(&buffer, &new_line[fd]));
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	if (bytes_read <= 0)
-		return (free (line), free_null(&buffer, &new_line));
+		return (free (line), free_null(&buffer, &new_line[fd]));
 	while (bytes_read > 0)
 	{
 		if (find_new_line(buffer))
-			return (line = cut_line(line, &buffer, new_line));
+			return (line = cut_line(line, &buffer, new_line[fd]));
 		line = ft_strjoin(line, buffer, 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
-	free_null(&buffer, &new_line);
+	free_null(&buffer, &new_line[fd]);
 	return (line);
 }
