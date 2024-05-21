@@ -71,7 +71,6 @@ char	*static_content(char *line, char **new_line)
 	free (line);
 	line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	line = ft_strjoin(line, aux, 1);
-	line = ft_strjoin(line, "\n", 1);
 	line = ft_strjoin(line, "\0", 1);
 	free(aux);
 	return (line);
