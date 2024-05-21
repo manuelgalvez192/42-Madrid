@@ -10,21 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
-int	find_new_line(char *buffer)
-{
-	int	count;
-
-	count = 0;
-	while (buffer[count])
-	{
-		if (buffer[count] == '\n')
-			return (1);
-		count++;
-	}
-	return (0);
-}
+#include "get_next_line.h"
 
 char	*cut_line(char *line, char **buffer, char *new_line)
 {
@@ -42,17 +28,17 @@ char	*cut_line(char *line, char **buffer, char *new_line)
 		i++;
 	}
 	line = ft_strjoin(line, aux, 1);
+	line = ft_strjoin(line, "\n", 1);
+	line = ft_strjoin(line, "\0", 1);
 	j = 0;
 	while ((*buffer)[i])
 	{
-		new_line[j] = (*buffer)[i];
+		new_line[j++] = (*buffer)[i];
 		i++;
-		j++;
 	}
 	while (new_line[j])
 		new_line[j++] = '\0';
-	free(*buffer);
-	return (*buffer = NULL, free(aux), line);
+	return (free(*buffer), free(aux), line);
 }
 
 char	*free_null(char **buffer, char **new_line)
@@ -66,6 +52,31 @@ char	*free_null(char **buffer, char **new_line)
 	return (NULL);
 }
 
+char	*static_content(char *line, char **new_line)
+{
+	char	*aux;
+	int		i;
+
+	aux = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!aux)
+		return (NULL);
+	i = 0;
+	while (**new_line != '\n' && **new_line != '\0')
+	{
+		aux[i] = **new_line;
+		i++;
+		(*new_line)++;
+	}
+	aux[i] = '\n';
+	free (line);
+	line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	line = ft_strjoin(line, aux, 1);
+	line = ft_strjoin(line, "\n", 1);
+	line = ft_strjoin(line, "\0", 1);
+	free(aux);
+	return (line);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*new_line;
@@ -76,19 +87,25 @@ char	*get_next_line(int fd)
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!new_line)
 		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	new_line++;
 	line = ft_strjoin(new_line, buffer, 0);
 	if (fd < 0 || !buffer || !new_line || BUFFER_SIZE <= 0)
 		return (free_null(&buffer, &new_line));
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	if (bytes_read <= 0)
-		return (free (line), free_null(&buffer, &new_line));
-	while (bytes_read > 0)
+	if (bytes_read == 0 && !ft_strchr(new_line, '\n'))
+		return (NULL);
+	while (bytes_read > 0 && (!ft_strchr(new_line, '\n') || !ft_strchr(buffer, '\0')))
 	{
-		if (find_new_line(buffer))
+		if (ft_strchr(buffer, '\n'))
 			return (line = cut_line(line, &buffer, new_line));
 		line = ft_strjoin(line, buffer, 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
-	free_null(&buffer, &new_line);
+	if (bytes_read == 0 && (ft_strchr(new_line, '\n')))
+		return(free(buffer), static_content(line, &new_line));
+	if (!ft_strchr(new_line, '\n') && !ft_strchr(buffer, '\0'))
+		free_null(&buffer, &new_line);
 	return (line);
 }
+
+

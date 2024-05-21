@@ -13,18 +13,16 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-int main() {
-	int fd = open("file.txt", O_RDONLY);
-	int i = 1;
-
-	char *line;
-	while (i != 0)
-	{
-		line = get_next_line(fd);
-		i = printf("%s", line);
-		free (line);
-	}
-	line = NULL;
-	close(fd);
-	return 0;
+int    main(void)
+{
+    char    *line;
+    int     fd = open("file.txt", O_RDONLY);
+    int i = 0;
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        i++;
+        printf("%s", line);
+        free(line);
+    }
+    return (0);
 }
