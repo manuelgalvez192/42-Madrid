@@ -41,16 +41,6 @@ char	*cut_line(char *line, char **buffer, char *new_line)
 	return (free(*buffer), free(aux), line);
 }
 
-char	*free_null(char **buffer, char **new_line)
-{
-	if (*new_line)
-		free (*new_line);
-	*new_line = NULL;
-	if (*buffer)
-		free (*buffer);
-	*buffer = NULL;
-	return (NULL);
-}
 
 char	*static_content(char *line, char **new_line)
 {
@@ -63,8 +53,7 @@ char	*static_content(char *line, char **new_line)
 	i = 0;
 	while (**new_line != '\n' && **new_line != '\0')
 	{
-		aux[i] = **new_line;
-		i++;
+		aux[i++] = **new_line;
 		(*new_line)++;
 	}
 	aux[i] = '\n';
@@ -72,10 +61,17 @@ char	*static_content(char *line, char **new_line)
 	line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	line = ft_strjoin(line, aux, 1);
 	line = ft_strjoin(line, "\0", 1);
-	free(aux);
-	return (line);
+	return (free(aux), line);
 }
-
+static void aux_get_next_line(char **buffer, char **new_line, char **line)
+{
+	
+	(*buffer) = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!(*new_line))
+		(*new_line) = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	(*new_line)++;
+	(*line) = ft_strjoin((*new_line), (*buffer), 0);
+}
 char	*get_next_line(int fd)
 {
 	static char	*new_line;
@@ -83,16 +79,14 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			bytes_read;
 
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!new_line)
-		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	new_line++;
-	line = ft_strjoin(new_line, buffer, 0);
+	bytes_read = 0;
+	aux_get_next_line(&buffer, &new_line, &line);
 	if (fd < 0 || !buffer || !new_line || BUFFER_SIZE <= 0)
 		return (free_null(&buffer, &new_line));
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	if (!ft_strchr(new_line, '\n'))
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
 	if (bytes_read == 0 && !ft_strchr(new_line, '\n'))
-		return (NULL);
+	 	return (NULL);
 	while (bytes_read > 0 && (!ft_strchr(new_line, '\n') || !ft_strchr(buffer, '\0')))
 	{
 		if (ft_strchr(buffer, '\n'))

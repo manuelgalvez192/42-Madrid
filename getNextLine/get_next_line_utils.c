@@ -34,47 +34,28 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (0);
 }
-
 char	*ft_strjoin(char const *s1, char const *s2, int flag)
 {
-	char	*ptr;
-	size_t	s1len;
-	size_t	s2len;
+	char	*aux_s1;
+	int		i;
+	int		j;
 
-	s1len = ft_strlen(s1);
-	s2len = ft_strlen(s2);
-	ptr = ft_calloc(((s1len + s2len) + 1), sizeof(char));
-	if (!ptr)
-		return (NULL);
-	ft_strlcat(ptr, s1, s1len + 1);
-	ft_strlcat(ptr, s2, s2len + s1len + 1);
-	if (flag)
-		free ((char *)s1);
-	return (ptr);
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t	srclen;
-	size_t	dstlen;
-	size_t	len;
-	size_t	i;
-
-	srclen = ft_strlen(src);
-	dstlen = ft_strlen(dst);
+	aux_s1 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!aux_s1 || !s1 || !s2)
+		return (0);
 	i = 0;
-	if (dstsize > dstlen)
-		len = srclen + dstlen;
-	else
-		len = srclen + dstsize;
-	while (src[i] && dstsize > (dstlen + 1))
+	while (s1[i] != '\0')
 	{
-		dst[dstlen] = src[i];
-		dstlen++;
+		aux_s1[i] = s1[i];
 		i++;
 	}
-	dst[dstlen] = '\0';
-	return (len);
+	j = 0;
+	while (s2[j] != '\0')
+		aux_s1[i++] = s2[j++];
+	aux_s1[i] = '\0';
+	if (flag == 1)
+		free ((char *)s1);
+	return (aux_s1);
 }
 
 void	*ft_calloc(size_t count, size_t size)
@@ -95,4 +76,15 @@ void	*ft_calloc(size_t count, size_t size)
 		len--;
 	}
 	return ((unsigned char *)ptr);
+}
+
+char	*free_null(char **buffer, char **new_line)
+{
+	if (*new_line)
+		free (*new_line);
+	*new_line = NULL;
+	if (*buffer)
+		free (*buffer);
+	*buffer = NULL;
+	return (NULL);
 }
