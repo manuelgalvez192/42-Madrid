@@ -43,17 +43,17 @@ char	*finalize_line(char *line, char **new_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*new_line;
+	static char	*new_line[256];
 	char		*buffer;
 	char		*line;
 	int			read_bytes;
 
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!new_line)
-		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer || !new_line)
-		return(free_null(&buffer, &new_line));
-	line = ft_strjoin(new_line, buffer, 0);
+	if (!new_line[fd])
+		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer || !new_line[fd])
+		return(free_null(&buffer, &new_line[fd]));
+	line = ft_strjoin(new_line[fd], buffer, 0);
 	read_bytes = 1;
 	while (!(ft_strchr(buffer, '\n')) && read_bytes > 0)
 	{
@@ -61,9 +61,9 @@ char	*get_next_line(int fd)
 		if (read_bytes == 0)
 			break ;
 		if (read_bytes == -1)
-			return (free_null(&buffer, &new_line));
+			return (free_null(&buffer, &new_line[fd]));
 		line = ft_strjoin(line, buffer, 1);
 	}
 	free(buffer);
-	return (finalize_line(line, &new_line));
+	return (finalize_line(line, &new_line[fd]));
 }
