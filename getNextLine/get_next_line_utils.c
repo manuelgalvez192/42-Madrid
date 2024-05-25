@@ -34,7 +34,8 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (0);
 }
-char	*ft_strjoin(char const *s1, char const *s2, int flag)
+
+char	*ft_strjoin(char *s1, char *s2, int flag)
 {
 	char	*aux_s1;
 	int		i;
@@ -54,7 +55,7 @@ char	*ft_strjoin(char const *s1, char const *s2, int flag)
 		aux_s1[i++] = s2[j++];
 	aux_s1[i] = '\0';
 	if (flag == 1)
-		free ((char *)s1);
+		free(s1);
 	return (aux_s1);
 }
 

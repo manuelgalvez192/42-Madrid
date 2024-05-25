@@ -36,6 +36,22 @@ char	*cut_line(char	*line, char *new_line)
 	return (line);
 }
 
+char	*finalize_line(char *line, char **new_line)
+{
+	line = cut_line(line, *new_line);
+	if (**new_line == '\0')
+	{
+		free(*new_line);
+		*new_line = NULL;
+	}
+	if (*line == '\0' && !*new_line)
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*new_line;
@@ -47,7 +63,7 @@ char	*get_next_line(int fd)
 	if (!new_line)
 		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer || !new_line)
-		return (NULL);
+		return(free_null(&buffer, &new_line));
 	line = ft_strjoin(new_line, buffer, 0);
 	read_bytes = 1;
 	while (!(ft_strchr(buffer, '\n')) && read_bytes > 0)
@@ -60,16 +76,5 @@ char	*get_next_line(int fd)
 		line = ft_strjoin(line, buffer, 1);
 	}
 	free(buffer);
-	line = cut_line(line, new_line);
-	if (*new_line == '\0')
-	{
-		free(new_line);
-		new_line = NULL;
-	}
-	if (*line == '\0' && !new_line)
-	{
-		free(line);
-		return (NULL);
-	}
-	return (line);
+	return (finalize_line(line, &new_line));
 }

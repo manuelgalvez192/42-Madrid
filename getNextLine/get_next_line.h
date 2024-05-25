@@ -25,8 +25,8 @@
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *c);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2, int flag);
-char	*free_null(char **buffer, char **new_line);
+char	*ft_strjoin(char *s1, char *s2, int flag);
 void	*ft_calloc(size_t count, size_t size);
+char	*free_null(char **buffer, char **new_line);
 
 #endif
