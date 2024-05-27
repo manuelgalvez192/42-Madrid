@@ -63,7 +63,7 @@ char	*get_next_line(int fd)
 	if (!new_line)
 		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer || !new_line)
-		return(free_null(&buffer, &new_line));
+		return (free_null(&buffer, &new_line));
 	line = ft_strjoin(new_line, buffer, 0);
 	read_bytes = 1;
 	while (!(ft_strchr(buffer, '\n')) && read_bytes > 0)
@@ -73,6 +73,7 @@ char	*get_next_line(int fd)
 			break ;
 		if (read_bytes == -1)
 			return (free_null(&buffer, &new_line));
+		buffer[read_bytes] = '\0';
 		line = ft_strjoin(line, buffer, 1);
 	}
 	free(buffer);

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/27 19:43:34 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/05/27 19:44:00 by mgalvez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
@@ -52,7 +63,7 @@ char	*get_next_line(int fd)
 	if (!new_line[fd])
 		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer || !new_line[fd])
-		return(free_null(&buffer, &new_line[fd]));
+		return (free_null(&buffer, &new_line[fd]));
 	line = ft_strjoin(new_line[fd], buffer, 0);
 	read_bytes = 1;
 	while (!(ft_strchr(buffer, '\n')) && read_bytes > 0)
