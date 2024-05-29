@@ -59,10 +59,9 @@ char	*ft_strjoin(char *s1, const char *s2, int flag)
 	}
 	while (s2[j])
 		result[i++] = s2[j++];
-	result[i] = '\0';
 	if (flag == 1)
 		free(s1);
-	return (result);
+	return (result[i] = '\0', result);
 }
 
 void	*ft_calloc(size_t count, size_t size)
