@@ -45,6 +45,19 @@ char	*finalize_line(char *line, char **new_line)
 	return (line);
 }
 
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+	size_t	total_size;
+
+	total_size = count * size;
+	ptr = malloc(total_size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, total_size);
+	return (ptr);
+}
+
 char	*free_null(char **buffer, char **new_line)
 {
 	if (*new_line)
@@ -63,15 +76,16 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			read_bytes;
 
-	new_line[fd] = NULL;
+	if (!new_line[fd])
+		new_line[fd] = NULL;
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	if (!new_line[fd])
 		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer || !new_line[fd])
+	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0 || !buffer || !new_line[fd])
 		return (free_null(&buffer, &new_line[fd]));
-	line = ft_strjoin(NULL, new_line[fd], 1);
+	line = ft_strjoin(NULL, new_line[fd], 0);
 	read_bytes = 1;
 	while (!ft_strchr(buffer, '\n') && read_bytes > 0)
 	{
@@ -81,6 +95,5 @@ char	*get_next_line(int fd)
 		buffer[read_bytes] = '\0';
 		line = ft_strjoin(line, buffer, 1);
 	}
-	free(buffer);
-	return (finalize_line(line, &new_line[fd]));
+	return (free(buffer), finalize_line(line, &new_line[fd]));
 }

@@ -35,14 +35,21 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
+void	ft_strjoin_internal(char *dest, const char *src, size_t *i)
+{
+	size_t	j;
+
+	j = 0;
+	while (src[j])
+		dest[(*i)++] = src[j++];
+}
+
 char	*ft_strjoin(char *s1, const char *s2, int flag)
 {
-	size_t	i;
-	size_t	j;
 	char	*result;
+	size_t	i;
 
 	i = 0;
-	j = 0;
 	if (!s1)
 		s1 = ft_calloc(1, sizeof(char));
 	if (!s2)
@@ -51,30 +58,16 @@ char	*ft_strjoin(char *s1, const char *s2, int flag)
 		return (NULL);
 	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!result)
-		return (NULL);
-	while (s1[i++])
 	{
-		result[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-		result[i++] = s2[j++];
-	if (flag == 1)
-		free(s1);
-	return (result[i] = '\0', result);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-	size_t	total_size;
-
-	total_size = count * size;
-	ptr = malloc(total_size);
-	if (!ptr)
+		if (flag == 1)
+			free(s1);
 		return (NULL);
-	ft_memset(ptr, 0, total_size);
-	return (ptr);
+	}
+	ft_strjoin_internal(result, s1, &i);
+	ft_strjoin_internal(result, s2, &i);
+	result[i] = '\0';
+	free(s1);
+	return (result);
 }
 
 void	ft_memset(void *ptr, int value, size_t num)
