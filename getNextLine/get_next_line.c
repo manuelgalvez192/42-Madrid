@@ -87,7 +87,7 @@ char	*get_next_line(int fd)
 		return (free_null(&buffer, &new_line));
 	line = ft_strjoin(NULL, new_line, 0);
 	read_bytes = 1;
-	while (!ft_strchr(buffer, '\n') && read_bytes > 0)
+	while (!ft_strchr(buffer, '\n') && read_bytes > 0 && !ft_strchr(line, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes <= 0)
