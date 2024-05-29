@@ -43,7 +43,7 @@ void	ft_strjoin_internal(char *dest, const char *src, size_t *i)
 	while (src[j])
 		dest[(*i)++] = src[j++];
 }
-
+/* comentario*/
 char	*ft_strjoin(char *s1, const char *s2, int flag)
 {
 	char	*result;
