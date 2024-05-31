@@ -63,11 +63,15 @@ void	*ft_calloc(size_t count, size_t size)
 char	*free_null(char **buffer, char **new_line)
 {
 	if (*new_line)
+	{
 		free(*new_line);
-	*new_line = NULL;
+		*new_line = NULL;
+	}
 	if (*buffer)
+	{
 		free(*buffer);
-	*buffer = NULL;
+		*buffer = NULL;
+	}
 	return (NULL);
 }
 
