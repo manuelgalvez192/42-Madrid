@@ -39,7 +39,10 @@ char	*finalize_line(char *line, char **new_line)
 	if (line[0] == '\0')
 	{
 		if (*new_line)
+		{
 			free(*new_line);
+			*new_line = NULL;
+		}
 		free(line);
 		line = NULL;
 		return (NULL);
