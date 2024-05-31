@@ -76,14 +76,14 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			read_bytes;
 
-	if (!new_line[fd])
-		new_line[fd] = NULL;
+	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	if (!new_line[fd])
 		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0 || !buffer || !new_line[fd])
+	if (!buffer || !new_line[fd])
 		return (free_null(&buffer, &new_line[fd]));
 	line = ft_strjoin(NULL, new_line[fd], 0);
 	read_bytes = 1;
