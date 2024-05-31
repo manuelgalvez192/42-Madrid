@@ -77,15 +77,13 @@ char	*free_null(char **buffer, char **new_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*new_line;
+	static char	*new_line = NULL;
 	char		*buffer;
 	char		*line;
 	int			read_bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	if (!new_line)
-		new_line = NULL;
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!new_line)
 		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
@@ -93,11 +91,10 @@ char	*get_next_line(int fd)
 	 	return (free_null(&buffer, &new_line));
 	line = ft_strjoin("", new_line, 0);
 	read_bytes = 1;
-	while (!ft_strchr(buffer, '\n') && read_bytes > 0 && !ft_strchr(line, '\n'))
+	while (!ft_strchr(buffer, '\n') && read_bytes != 0 && !ft_strchr(line, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (read_bytes <= 0)
-			break ;
+		printf("%s", buffer);
 		buffer[read_bytes] = '\0';
 		line = ft_strjoin(line, buffer, 1);
 	}
