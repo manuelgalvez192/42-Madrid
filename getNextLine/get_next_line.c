@@ -38,6 +38,8 @@ char	*finalize_line(char *line, char **new_line)
 	cut_line(line, new_line);
 	if (line[0] == '\0')
 	{
+		if (*new_line)
+			free(*new_line);
 		free(line);
 		line = NULL;
 		return (NULL);

@@ -58,9 +58,7 @@ char	*ft_strjoin(char *s1, const char *s2)
 		return (NULL);
 	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!result)
-	{
 		return (NULL);
-	}
 	ft_strjoin_internal(result, s1, &i);
 	ft_strjoin_internal(result, s2, &i);
 	result[i] = '\0';
