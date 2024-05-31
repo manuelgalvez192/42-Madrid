@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -38,11 +38,6 @@ char	*finalize_line(char *line, char **new_line)
 	cut_line(line, new_line);
 	if (line[0] == '\0')
 	{
-		if (*new_line)
-		{
-			free(*new_line);
-			*new_line = NULL;
-		}
 		free(line);
 		line = NULL;
 		return (NULL);
@@ -66,38 +61,37 @@ void	*ft_calloc(size_t count, size_t size)
 char	*free_null(char **buffer, char **new_line)
 {
 	if (*new_line)
-	{
 		free(*new_line);
-		*new_line = NULL;
-	}
+	*new_line = NULL;
 	if (*buffer)
-	{
 		free(*buffer);
-		*buffer = NULL;
-	}
+	*buffer = NULL;
 	return (NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*new_line = NULL;
+	static char	*new_line;
 	char		*buffer;
 	char		*line;
 	int			read_bytes;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
+	if (!new_line)
+		new_line = NULL;
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buffer)
+		return (NULL);
 	if (!new_line)
 		new_line = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buffer || !new_line)
-	 	return (free_null(&buffer, &new_line));
-	line = ft_strjoin("", new_line, 0);
+	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer || !new_line)
+		return (free_null(&buffer, &new_line));
+	line = ft_strjoin(NULL, new_line, 0);
 	read_bytes = 1;
-	while (!ft_strchr(buffer, '\n') && read_bytes != 0 && !ft_strchr(line, '\n'))
+	while (!ft_strchr(buffer, '\n') && read_bytes > 0 && !ft_strchr(line, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		printf("%s", buffer);
+		if (read_bytes <= 0)
+			break ;
 		buffer[read_bytes] = '\0';
 		line = ft_strjoin(line, buffer, 1);
 	}

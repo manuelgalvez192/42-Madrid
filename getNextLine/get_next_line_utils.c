@@ -16,8 +16,6 @@ size_t	ft_strlen(const char *c)
 {
 	size_t	i;
 
-	if (!c)
-		return ('0');
 	i = 0;
 	while (c[i])
 		i++;
@@ -46,22 +44,29 @@ void	ft_strjoin_internal(char *dest, const char *src, size_t *i)
 		dest[(*i)++] = src[j++];
 }
 
-char	*ft_strjoin(char *s1, char *s2, int flag)
+char	*ft_strjoin(char *s1, const char *s2, int flag)
 {
 	char	*result;
 	size_t	i;
 
 	i = 0;
+	if (!s1)
+		s1 = ft_calloc(1, sizeof(char));
+	if (!s2)
+		s2 = ft_calloc(1, sizeof(char));
 	if (!s1 || !s2)
 		return (NULL);
-	result = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!result)
+	{
+		if (flag == 1)
+			free(s1);
 		return (NULL);
+	}
 	ft_strjoin_internal(result, s1, &i);
 	ft_strjoin_internal(result, s2, &i);
 	result[i] = '\0';
-	if (flag == 1)
-		free(s1);
+	free(s1);
 	return (result);
 }
 

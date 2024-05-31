@@ -38,11 +38,6 @@ char	*finalize_line(char *line, char **new_line)
 	cut_line(line, new_line);
 	if (line[0] == '\0')
 	{
-		if (*new_line)
-		{
-			free(*new_line);
-			*new_line = NULL;
-		}
 		free(line);
 		line = NULL;
 		return (NULL);
@@ -88,7 +83,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!new_line[fd])
 		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || !buffer || !new_line[fd])
+	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0 || !buffer || !new_line[fd])
 		return (free_null(&buffer, &new_line[fd]));
 	line = ft_strjoin(NULL, new_line[fd], 0);
 	read_bytes = 1;
