@@ -44,7 +44,7 @@ void	ft_strjoin_internal(char *dest, const char *src, size_t *i)
 		dest[(*i)++] = src[j++];
 }
 
-char	*ft_strjoin(char *s1, const char *s2, int flag)
+char	*ft_strjoin(char *s1, const char *s2)
 {
 	char	*result;
 	size_t	i;
@@ -59,8 +59,8 @@ char	*ft_strjoin(char *s1, const char *s2, int flag)
 	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!result)
 	{
-		if (flag == 1)
-			free(s1);
+		free(s1);
+		free((char *)s2);
 		return (NULL);
 	}
 	ft_strjoin_internal(result, s1, &i);
