@@ -88,15 +88,16 @@ char	*get_next_line(int fd)
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!new_line[fd])
 		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || !new_line[fd] || !buffer
-		|| read(fd, 0, 0) < 0)
+	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || !new_line[fd] || !buffer)
 		return (free_null(&buffer, &new_line[fd]));
 	line = ft_strjoin(NULL, new_line[fd]);
 	read_bytes = 1;
 	while (!ft_strchr(buffer, '\n') && read_bytes > 0 && !ft_strchr(line, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (read_bytes <= 0)
+		if (read_bytes < 0)
+			return (free(line), line = NULL, free_null(&buffer, &new_line[fd]));
+		if (read_bytes == 0)
 			break ;
 		buffer[read_bytes] = '\0';
 		line = ft_strjoin(line, buffer);
