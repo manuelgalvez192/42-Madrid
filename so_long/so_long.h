@@ -24,5 +24,7 @@ char	**fill_map(int fd, char **map);
 /* --- error_manager functions --- */
 char	*check_valid_file(int fd, char *argv);
 char	*check_extension(char *arg);
+char	*check_size_map(char **map);
+char	*check_chars(char **map);
 
 #endif

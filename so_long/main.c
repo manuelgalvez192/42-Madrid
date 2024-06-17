@@ -24,13 +24,15 @@ int	main(int argc, char **argv)
 		map = store_map(fd);
 		fd = open(argv[1], O_RDONLY);
 		map = fill_map(fd, map);
+		check_size_map(map);
+		check_chars(map);
+		free (map);
 		if (map == NULL)
 			return (0);
-		free (map);
 		close(fd);
 	}
 	else
-		perror("Error del numero de parametros. Pon un parametro pls\n");
+		perror("Error\n del numero de parametros. Pon un parametro pls\n");
 	return (0);
 }
 
@@ -42,7 +44,7 @@ char	**store_map(int fd)
 	int		i;
 
 	width = ft_strlen(get_next_line(fd));
-	height = 0;
+	height = 1;
 	while (get_next_line(fd) != NULL)
 		height++;
 	map = ft_calloc(sizeof(char *), height + 1);
@@ -51,7 +53,7 @@ char	**store_map(int fd)
 	i = 0;
 	while (i < height)
 	{
-		map[i] = ft_calloc(sizeof(char), width + 1);
+		map[i] = ft_calloc(sizeof(char *), width + 1);
 		if (map[i] == NULL)
 			return (NULL);
 		i++;
@@ -73,10 +75,10 @@ char	**fill_map(int fd, char **map)
 		while (line[j] != '\0')
 		{
 			map[i][j] = line[j];
-			printf("%c", map[i][j]);
 			j++;
 		}
 		i++;
 	}
+	close(fd);
 	return (map);
 }

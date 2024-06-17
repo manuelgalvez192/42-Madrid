@@ -29,6 +29,7 @@ BNS = $(BONUS:.c=.o)
 
 # The default target - builds the project
 all: $(NAME)
+	./$(NAME) $(MAP)
 
 # A rule to build the project from the .o files
 $(NAME): $(LIBFT_LIB) $(OBJS)
