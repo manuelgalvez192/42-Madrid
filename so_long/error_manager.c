@@ -52,12 +52,16 @@ char	*check_size_map(char **map)
 	if ((width - 1)  == height)
 	{
 		perror("Error\n de mapa. No es un rectangulo\n");
-		return (0);
+		free(*map);
+		*map = NULL;
+		exit(0);
 	}
 	if (width < 3 || height < 3)
 	{
 		perror("Error\n de mapa. El mapa esta chikito\n");
-		return (0);
+		free(*map);
+		*map = NULL;
+		exit(0);
 	}
 	return (NULL);
 }
@@ -77,6 +81,8 @@ char	*check_chars(char **map)
 				&& map[i][j] != 'E' && map[i][j] != 'C')
 			{
 				perror("Error\n Caracter no valido\n");
+				free(*map);
+				*map = NULL;
 				return (0);
 			}
 			j++;

@@ -21,7 +21,8 @@ int	main(int argc, char **argv)
 	{
 		fd = open(argv[1], O_RDONLY);
 		check_valid_file(fd, argv[1]);
-		map = store_map(fd);
+		map = NULL;
+		map = store_map(map, fd);
 		fd = open(argv[1], O_RDONLY);
 		map = fill_map(fd, map);
 		check_size_map(map);
@@ -36,17 +37,22 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-char	**store_map(int fd)
+char	**store_map(char **map, int fd)
 {
-	char	**map;
+	char	*line;
 	int		width;
 	int		height;
 	int		i;
 
-	width = ft_strlen(get_next_line(fd));
+	line = get_next_line(fd);
+	width = ft_strlen(line);
+	free(line);
 	height = 1;
-	while (get_next_line(fd) != NULL)
+	while ((line = get_next_line(fd)) != NULL)
+	{
 		height++;
+		free(line);
+	}
 	map = ft_calloc(sizeof(char *), height + 1);
 	if (map == NULL)
 		return (NULL);
@@ -54,12 +60,10 @@ char	**store_map(int fd)
 	while (i < height)
 	{
 		map[i] = ft_calloc(sizeof(char *), width + 1);
-		if (map[i] == NULL)
+		if (map[i++] == NULL)
 			return (NULL);
-		i++;
 	}
-	close(fd);
-	return (map);
+	return (close(fd), map);
 }
 
 char	**fill_map(int fd, char **map)
@@ -77,6 +81,9 @@ char	**fill_map(int fd, char **map)
 			map[i][j] = line[j];
 			j++;
 		}
+		map[i][j] = '\0';
+        free(line);
+        line = NULL;
 		i++;
 	}
 	close(fd);

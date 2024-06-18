@@ -20,6 +20,7 @@ RM = rm -f
 SRCS = main.c \
 	   game_manager.c \
 	   error_manager.c \
+	   error_free.c \
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)
