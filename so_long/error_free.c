@@ -23,4 +23,5 @@ char	*free_map(char **map)
 		i++;
 	}
 	free(map);
+	return (NULL);
 }

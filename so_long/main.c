@@ -27,13 +27,13 @@ int	main(int argc, char **argv)
 		map = fill_map(fd, map);
 		check_size_map(map);
 		check_chars(map);
-		free (map);
+		free_map(map);
 		if (map == NULL)
 			return (0);
 		close(fd);
 	}
 	else
-		perror("Error\n del numero de parametros. Pon un parametro pls\n");
+		ft_printf("Error\n del numero de parametros. Pon un parametro pls\n");
 	return (0);
 }
 

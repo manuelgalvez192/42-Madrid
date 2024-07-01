@@ -16,7 +16,7 @@ char	*check_valid_file(int fd, char *argv)
 {
 	if (fd == -1)
 	{
-		perror("Error\n al abrir el archivo\n");
+		ft_printf("Error\n al abrir el archivo\n");
 		return (0);
 	}
 	if (check_extension(argv) == NULL)
@@ -34,7 +34,7 @@ char	*check_extension(char *arg)
 	if (arg[i - 1] != 'r' || arg[i - 2] != 'e' || arg[i - 3] != 'b'
 		|| arg[i - 4] != '.')
 	{
-		perror("Error\n de tipo de extension. Que acabe en .ber pls\n");
+		ft_printf("Error\n de tipo de extension. Que acabe en .ber pls\n");
 		return (NULL);
 	}
 	return (arg);
@@ -51,43 +51,73 @@ char	*check_size_map(char **map)
 		height++;
 	if ((width - 1)  == height)
 	{
-		perror("Error\n de mapa. No es un rectangulo\n");
-		free(*map);
+		ft_printf("Error\n de mapa. No es un rectangulo\n");
+		free_map(map);
 		*map = NULL;
 		exit(0);
 	}
 	if (width < 3 || height < 3)
 	{
-		perror("Error\n de mapa. El mapa esta chikito\n");
-		free(*map);
+		ft_printf("Error\n de mapa. El mapa esta chikito\n");
+		free_map(map);
 		*map = NULL;
 		exit(0);
 	}
 	return (NULL);
 }
 
-char	*check_chars(char **map)
+void count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c)
 {
-	int		i;
-	int		j;
+    int i;
+    int j;
 
-	i = 0;
-	while (map[i] != NULL)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'P'
-				&& map[i][j] != 'E' && map[i][j] != 'C')
-			{
-				perror("Error\n Caracter no valido\n");
-				free(*map);
-				*map = NULL;
-				return (0);
-			}
-			j++;
-		}
-		i++;
-	}
-	return (NULL);
+    i = 0;
+    while (map[i] != NULL)
+    {
+        j = 0;
+        while (map[i][j] != '\0')
+        {
+            if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'P'
+                && map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
+            {
+                printf("Error\n de caracteres %c en el mapa\n", map[i][j]);
+                return (free_map(map), *map = NULL, 0);
+            }
+            if (map[i][j] == 'P')
+                (*count_p)++;
+            if (map[i][j] == 'E')
+                (*count_e)++;
+            if (map[i][j] == 'C')
+                (*count_c)++;
+            j++;
+        }
+        i++;
+    }
+}
+
+char *check_chars(char **map)
+{
+    int count_p = 0;
+    int count_e = 0;
+    int count_c = 0;
+
+    count_and_validate_chars(map, &count_p, &count_e, &count_c);
+
+    if (map == NULL)
+        return (0);
+
+    if (count_p != 1 || count_e != 1 || count_c < 1)
+    {
+        if (count_p != 1)
+            printf("Error\n el carácter 'P'. Comprueba cuantas veces sale\n");
+        if (count_e != 1)
+            printf("Error\n el carácter 'E'. Comprueba cuantas veces sale\n");
+        if (count_c < 1)
+            printf("Error\n el carácter 'C'. No hay coleccionables\n");
+        free_map(map);
+        *map = NULL;
+        return (0);
+    }
+
+    return (NULL);
 }
