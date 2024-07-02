@@ -48,8 +48,17 @@ char	*check_size_map(char **map)
 	width = ft_strlen(map[0]);
 	height = 0;
 	while (map[height] != NULL)
+    {
 		height++;
-	if ((width - 1)  == height)
+        if (ft_strlen(map[height]) != ft_strlen(map[height - 1]))
+        {
+            ft_printf("Error\n de mapa. No miden todos lo mismo\n");
+            free_map(map);
+            *map = NULL;
+            exit(0);
+        }
+    }
+	if ((width - 1) == height)
 	{
 		ft_printf("Error\n de mapa. No es un rectangulo\n");
 		free_map(map);
@@ -66,22 +75,24 @@ char	*check_size_map(char **map)
 	return (NULL);
 }
 
-void count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c)
+void    count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c)
 {
     int i;
     int j;
 
-    i = 0;
-    while (map[i] != NULL)
+    i = -1;
+    while (map[++i] != NULL)
     {
-        j = 0;
-        while (map[i][j] != '\0')
+        j = -1;
+        while (map[i][++j] != '\0')
         {
             if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'P'
                 && map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
             {
-                printf("Error\n de caracteres %c en el mapa\n", map[i][j]);
-                return (free_map(map), *map = NULL, 0);
+                printf("Error\n de caracteres %c en el mapa\n", map[i][j]); 
+                free_map(map);
+                *map = NULL;
+                exit(0);
             }
             if (map[i][j] == 'P')
                 (*count_p)++;
@@ -89,9 +100,7 @@ void count_and_validate_chars(char **map, int *count_p, int *count_e, int *count
                 (*count_e)++;
             if (map[i][j] == 'C')
                 (*count_c)++;
-            j++;
         }
-        i++;
     }
 }
 

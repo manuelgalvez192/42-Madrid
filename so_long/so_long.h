@@ -25,6 +25,7 @@ char	**fill_map(int fd, char **map);
 char	*check_valid_file(int fd, char *argv);
 char	*check_extension(char *arg);
 char	*check_size_map(char **map);
+void	count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c);
 char	*check_chars(char **map);
 
 /* --- error_free functions --- */
