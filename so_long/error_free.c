@@ -25,3 +25,15 @@ char	*free_map(char **map)
 	free(map);
 	return (NULL);
 }
+
+char	*check_valid_file(int fd, char *argv)
+{
+	if (fd == -1)
+	{
+		ft_printf("Error\n al abrir el archivo\n");
+		return (0);
+	}
+	if (check_extension(argv) == NULL)
+		return (0);
+	return (NULL);
+}

@@ -12,17 +12,7 @@
 
 #include "so_long.h"
 
-char	*check_valid_file(int fd, char *argv)
-{
-	if (fd == -1)
-	{
-		ft_printf("Error\n al abrir el archivo\n");
-		return (0);
-	}
-	if (check_extension(argv) == NULL)
-		return (0);
-	return (NULL);
-}
+
 
 char	*check_extension(char *arg)
 {
@@ -42,23 +32,12 @@ char	*check_extension(char *arg)
 
 char	*check_size_map(char **map)
 {
-	int		width;
-	int		height;
+	size_t	width;
+	size_t	height;
 
-	width = ft_strlen(map[0]);
-	height = 0;
-	while (map[height] != NULL)
-    {
-		height++;
-        if (ft_strlen(map[height]) != ft_strlen(map[height - 1]))
-        {
-            ft_printf("Error\n de mapa. No miden todos lo mismo\n");
-            free_map(map);
-            *map = NULL;
-            exit(0);
-        }
-    }
-	if ((width - 1) == height)
+	width = ft_strlen(map[0]) - 1;
+	height = check_width_size(map, width);
+	if ((width) == height)
 	{
 		ft_printf("Error\n de mapa. No es un rectangulo\n");
 		free_map(map);
@@ -75,58 +54,85 @@ char	*check_size_map(char **map)
 	return (NULL);
 }
 
-void    count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c)
+size_t	check_width_size(char **map, size_t width)
 {
-    int i;
-    int j;
+	size_t	height;
+	size_t	height_aux;
+	size_t	width_aux;
 
-    i = -1;
-    while (map[++i] != NULL)
-    {
-        j = -1;
-        while (map[i][++j] != '\0')
-        {
-            if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'P'
-                && map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
-            {
-                printf("Error\n de caracteres %c en el mapa\n", map[i][j]); 
-                free_map(map);
-                *map = NULL;
-                exit(0);
-            }
-            if (map[i][j] == 'P')
-                (*count_p)++;
-            if (map[i][j] == 'E')
-                (*count_e)++;
-            if (map[i][j] == 'C')
-                (*count_c)++;
-        }
-    }
+	height_aux = 0;
+	while (map[height_aux] != NULL)
+		height_aux++;
+	height = 0;
+	while (map[height] != NULL)
+	{
+		width_aux = ft_strlen(map[height]) - 1;
+		height++;
+		if (height_aux == height)
+			width_aux++;
+		if (width_aux != width)
+		{
+			printf("Error\n de mapa. No miden todos lo mismo\n");
+			free_map(map);
+			*map = NULL;
+			exit(0);
+		}
+	}
+	return (height);
 }
 
-char *check_chars(char **map)
+void	count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c)
 {
-    int count_p = 0;
-    int count_e = 0;
-    int count_c = 0;
+	int	i;
+	int	j;
 
-    count_and_validate_chars(map, &count_p, &count_e, &count_c);
+	i = -1;
+	while (map[++i] != NULL)
+	{
+		j = -1;
+		while (map[i][++j] != '\0')
+		{
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'P'
+				&& map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
+			{
+				printf("Error\n de caracteres %c en el mapa\n", map[i][j]); 
+				free_map(map);
+				*map = NULL;
+				exit(0);
+			}
+			if (map[i][j] == 'P')
+				(*count_p)++;
+			if (map[i][j] == 'E')
+				(*count_e)++;
+			if (map[i][j] == 'C')
+				(*count_c)++;
+		}
+	}
+}
 
-    if (map == NULL)
-        return (0);
+char	*check_chars(char **map)
+{
+	int count_p = 0;
+	int count_e = 0;
+	int count_c = 0;
 
-    if (count_p != 1 || count_e != 1 || count_c < 1)
-    {
-        if (count_p != 1)
-            printf("Error\n el carácter 'P'. Comprueba cuantas veces sale\n");
-        if (count_e != 1)
-            printf("Error\n el carácter 'E'. Comprueba cuantas veces sale\n");
-        if (count_c < 1)
-            printf("Error\n el carácter 'C'. No hay coleccionables\n");
-        free_map(map);
-        *map = NULL;
-        return (0);
-    }
+	count_and_validate_chars(map, &count_p, &count_e, &count_c);
 
-    return (NULL);
+	if (map == NULL)
+		return (0);
+
+	if (count_p != 1 || count_e != 1 || count_c < 1)
+	{
+		if (count_p != 1)
+			printf("Error\n el carácter 'P'. Comprueba cuantas veces sale\n");
+		if (count_e != 1)
+			printf("Error\n el carácter 'E'. Comprueba cuantas veces sale\n");
+		if (count_c < 1)
+			printf("Error\n el carácter 'C'. No hay coleccionables\n");
+		free_map(map);
+		*map = NULL;
+		return (0);
+	}
+
+	return (NULL);
 }
