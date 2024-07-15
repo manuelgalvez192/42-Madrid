@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		map = fill_map(fd, map);
 		check_size_map(map);
 		check_chars(map);
+		game_manager(map);
 		free_map(map);
 		if (map == NULL)
 			return (0);

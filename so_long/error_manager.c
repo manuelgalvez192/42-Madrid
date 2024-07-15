@@ -12,24 +12,6 @@
 
 #include "so_long.h"
 
-
-
-char	*check_extension(char *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i] != '\0')
-		i++;
-	if (arg[i - 1] != 'r' || arg[i - 2] != 'e' || arg[i - 3] != 'b'
-		|| arg[i - 4] != '.')
-	{
-		ft_printf("Error\n de tipo de extension. Que acabe en .ber pls\n");
-		return (NULL);
-	}
-	return (arg);
-}
-
 char	*check_size_map(char **map)
 {
 	size_t	width;
@@ -72,13 +54,40 @@ size_t	check_width_size(char **map, size_t width)
 			width_aux++;
 		if (width_aux != width)
 		{
-			printf("Error\n de mapa. No miden todos lo mismo\n");
+			printf("Error\n de mapa. Los lados no miden lo mismo\n");
 			free_map(map);
 			*map = NULL;
 			exit(0);
 		}
 	}
 	return (height);
+}
+
+char	*check_chars(char **map)
+{
+	int count_p = 0;
+	int count_e = 0;
+	int count_c = 0;
+
+	count_and_validate_chars(map, &count_p, &count_e, &count_c);
+	check_border(map);
+	if (map == NULL)
+		return (0);
+	check_border(map);
+	if (count_p != 1 || count_e != 1 || count_c < 1)
+	{
+		if (count_p != 1)
+			printf("Error\n el carácter 'P'. Comprueba cuantas veces sale\n");
+		if (count_e != 1)
+			printf("Error\n el carácter 'E'. Comprueba cuantas veces sale\n");
+		if (count_c < 1)
+			printf("Error\n el carácter 'C'. No hay coleccionables\n");
+		free_map(map);
+		*map = NULL;
+		return (0);
+	}
+
+	return (NULL);
 }
 
 void	count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c)
@@ -108,31 +117,4 @@ void	count_and_validate_chars(char **map, int *count_p, int *count_e, int *count
 				(*count_c)++;
 		}
 	}
-}
-
-char	*check_chars(char **map)
-{
-	int count_p = 0;
-	int count_e = 0;
-	int count_c = 0;
-
-	count_and_validate_chars(map, &count_p, &count_e, &count_c);
-
-	if (map == NULL)
-		return (0);
-
-	if (count_p != 1 || count_e != 1 || count_c < 1)
-	{
-		if (count_p != 1)
-			printf("Error\n el carácter 'P'. Comprueba cuantas veces sale\n");
-		if (count_e != 1)
-			printf("Error\n el carácter 'E'. Comprueba cuantas veces sale\n");
-		if (count_c < 1)
-			printf("Error\n el carácter 'C'. No hay coleccionables\n");
-		free_map(map);
-		*map = NULL;
-		return (0);
-	}
-
-	return (NULL);
 }
