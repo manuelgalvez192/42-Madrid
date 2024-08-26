@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:36:15 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/06/07 21:36:16 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/06/07 21:36:16 by mgalvez-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 void	game_manager(char **map)
 {
-	void	*mlx;
-	void	*window;
+    t_vars  vars;
 
-	*map = NULL;
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, 1920, 1080, "so_long");
-	mlx_hook(window, 17, 0L, close_window, window);
-	mlx_loop(mlx);
+    vars.mlx = mlx_init();
+    vars.win = mlx_new_window(vars.mlx, 1920, 1080, "so_long");
+    mlx_hook(vars.win, 17, 0L, close_window, map);
+    mlx_loop(vars.mlx);
+    declare_images(vars, map);
+    put_images(vars, map);
 }
 
-int	close_window(void *window)
+int close_window(char **map)
 {
-	mlx_destroy_window(window, window);
-	exit(0);
+    free_map(map);
+    exit(0);
+    return (0);
 }

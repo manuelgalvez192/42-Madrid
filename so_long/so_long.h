@@ -17,9 +17,22 @@
 # include "./mlx/mlx.h"
 
 
+/* --- struct --- */
+typedef struct s_vars {
+	void *mlx;
+	void *win;
+	void *wall_img;
+	void *floor_img;
+	void *player_img;
+	void *exit_img;
+	void *collectible_img;
+} t_vars;
+
+
 /* --- main functions --- */
 char	**store_map(char **map, int fd);
 char	**fill_map(int fd, char **map);
+
 
 /* --- error_manager functions --- */
 char	*check_size_map(char **map);
@@ -35,8 +48,14 @@ char	*check_extension(char *arg);
 void	check_border(char **map);
 void	check_border_side(char **map, size_t height, size_t j);
 
+
 /* --- game_manager functions --- */
 void	game_manager(char **map);
-int		close_window(void *window);
+int		close_window(char **map);
+
+
+/* --- images_manager --- */
+void    declare_images(t_vars vars, char** map);
+void	put_images(t_vars vars, char **map);
 
 #endif

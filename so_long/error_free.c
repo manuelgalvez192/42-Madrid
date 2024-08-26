@@ -16,6 +16,8 @@ char	*free_map(char **map)
 {
 	int	i;
 
+	if (map == NULL)
+        return (NULL);
 	i = 0;
 	while (map[i] != NULL)
 	{
@@ -31,7 +33,7 @@ char	*check_valid_file(int fd, char *argv)
 	if (fd == -1)
 	{
 		ft_printf("Error\n al abrir el archivo\n");
-		return (0);
+		exit(0);
 	}
 	if (check_extension(argv) == NULL)
 		return (0);
@@ -49,7 +51,7 @@ char	*check_extension(char *arg)
 		|| arg[i - 4] != '.')
 	{
 		ft_printf("Error\n de tipo de extension. Que acabe en .ber pls\n");
-		return (NULL);
+		exit(0);
 	}
 	return (arg);
 }

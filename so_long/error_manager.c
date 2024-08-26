@@ -23,14 +23,12 @@ char	*check_size_map(char **map)
 	{
 		ft_printf("Error\n de mapa. No es un rectangulo\n");
 		free_map(map);
-		*map = NULL;
 		exit(0);
 	}
 	if (width < 3 || height < 3)
 	{
 		ft_printf("Error\n de mapa. El mapa esta chikito\n");
 		free_map(map);
-		*map = NULL;
 		exit(0);
 	}
 	return (NULL);
@@ -56,7 +54,6 @@ size_t	check_width_size(char **map, size_t width)
 		{
 			printf("Error\n de mapa. Los lados no miden lo mismo\n");
 			free_map(map);
-			*map = NULL;
 			exit(0);
 		}
 	}
@@ -83,8 +80,7 @@ char	*check_chars(char **map)
 		if (count_c < 1)
 			printf("Error\n el carácter 'C'. No hay coleccionables\n");
 		free_map(map);
-		*map = NULL;
-		return (0);
+		exit(0);
 	}
 
 	return (NULL);
@@ -106,7 +102,6 @@ void	count_and_validate_chars(char **map, int *count_p, int *count_e, int *count
 			{
 				printf("Error\n de caracteres %c en el mapa\n", map[i][j]); 
 				free_map(map);
-				*map = NULL;
 				exit(0);
 			}
 			if (map[i][j] == 'P')

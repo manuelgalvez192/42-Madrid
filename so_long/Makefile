@@ -26,6 +26,7 @@ SRCS = main.c \
 	   game_manager.c \
 	   error_manager.c \
 	   error_free.c \
+	   images_manager.c \
 	   mlx/mlx_init.c \
 	   mlx/mlx_new_window.c \
 
