@@ -23,10 +23,3 @@ size_t	ft_strlen(const char *c)
 	}
 	return (i);
 }
-
-/*int	main(void)
-{
-	char c[5] = "aaaa";
-	printf("%d \n", ft_strlen(c));
-	return (0);
-}*/

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_printf_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 20:32:36 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/20 20:15:50 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/03/11 21:21:32 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/03/13 19:01:15 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isascii(int c)
+void	print_pointer(size_t num, char *hex_digits, int *len)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	ft_putstr("0x", len);
+	print_hexa(num, hex_digits, len);
 }
-
-/*int	main(void)
-{
-	char c = 'a';
-	printf("%d \n", ft_isascii(c));
-	return (0);
-}*/

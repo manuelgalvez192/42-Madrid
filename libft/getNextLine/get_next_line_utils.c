@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 19:32:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/05/15 19:32:10 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/05/27 19:44:50 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/05/27 19:44:55 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *c)
+size_t	ft_strlen_gnl(const char *c)
 {
 	size_t	i;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *c)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_gnl(const char *s, int c)
 {
 	while (*s)
 	{
@@ -35,7 +35,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	ft_strjoin_internal(char *dest, const char *src, size_t *i)
+void	ft_strjoin_internal_gnl(char *dest, const char *src, size_t *i)
 {
 	size_t	j;
 
@@ -44,33 +44,33 @@ void	ft_strjoin_internal(char *dest, const char *src, size_t *i)
 		dest[(*i)++] = src[j++];
 }
 
-char	*ft_strjoin(char *s1, const char *s2)
+char	*ft_strjoin_gnl(char *s1, const char *s2)
 {
 	char	*result;
 	size_t	i;
 
 	i = 0;
 	if (!s1)
-		s1 = ft_calloc(1, sizeof(char));
+		s1 = ft_calloc_gnl(1, sizeof(char));
 	if (!s2)
-		s2 = ft_calloc(1, sizeof(char));
+		s2 = ft_calloc_gnl(1, sizeof(char));
 	if (!s1 || !s2)
 		return (NULL);
-	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	result = malloc(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1);
 	if (!result)
 	{
 		free(s1);
 		free((char *)s2);
 		return (NULL);
 	}
-	ft_strjoin_internal(result, s1, &i);
-	ft_strjoin_internal(result, s2, &i);
+	ft_strjoin_internal_gnl(result, s1, &i);
+	ft_strjoin_internal_gnl(result, s2, &i);
 	result[i] = '\0';
 	free(s1);
 	return (result);
 }
 
-void	ft_memset(void *ptr, int value, size_t num)
+void	ft_memset_gnl(void *ptr, int value, size_t num)
 {
 	unsigned char	*p;
 

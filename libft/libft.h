@@ -16,6 +16,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "getNextLine/get_next_line.h"
+# include "printf/ft_printf.h"
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);

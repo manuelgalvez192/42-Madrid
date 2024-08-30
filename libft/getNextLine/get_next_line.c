@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 char	*cut_line(char *line, char **new_line)
 {
@@ -50,7 +50,7 @@ char	*finalize_line(char *line, char **new_line)
 	return (line);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc_gnl(size_t count, size_t size)
 {
 	void	*ptr;
 	size_t	total_size;
@@ -59,7 +59,7 @@ void	*ft_calloc(size_t count, size_t size)
 	ptr = malloc(total_size);
 	if (!ptr)
 		return (NULL);
-	ft_memset(ptr, 0, total_size);
+	ft_memset_gnl(ptr, 0, total_size);
 	return (ptr);
 }
 
@@ -85,14 +85,14 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			read_bytes;
 
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	buffer = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	if (!new_line[fd])
-		new_line[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		new_line[fd] = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || !new_line[fd] || !buffer)
 		return (free_null(&buffer, &new_line[fd]));
-	line = ft_strjoin(NULL, new_line[fd]);
+	line = ft_strjoin_gnl(NULL, new_line[fd]);
 	read_bytes = 1;
-	while (!ft_strchr(buffer, '\n') && read_bytes > 0 && !ft_strchr(line, '\n'))
+	while (!ft_strchr_gnl(buffer, '\n') && read_bytes > 0 && !ft_strchr_gnl(line, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes < 0)
@@ -100,7 +100,7 @@ char	*get_next_line(int fd)
 		if (read_bytes == 0)
 			break ;
 		buffer[read_bytes] = '\0';
-		line = ft_strjoin(line, buffer);
+		line = ft_strjoin_gnl(line, buffer);
 	}
 	return (free(buffer), finalize_line(line, &new_line[fd]));
 }
