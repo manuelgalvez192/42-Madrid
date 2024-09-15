@@ -63,8 +63,8 @@ char	*make_path(char *split_path, char *cmd)
 	char	*path;
 
 	i = 0;
-	path = malloc(ft_strlen(split_path + ft_strlen(cmd + 1)
-		+ 2 * sizeof(char)));
+	path = malloc(ft_strlen(split_path) + ft_strlen(cmd + 1)
+			+ 2 * sizeof(char));
 	if (!path)
 		return (NULL);
 	while (split_path[i])
