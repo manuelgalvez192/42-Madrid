@@ -6,19 +6,19 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 01:13:05 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/14 20:30:02 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/15 19:53:04 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 /* --- main --- */
 void	child_process(int fd[2], char **argv, char **envp);

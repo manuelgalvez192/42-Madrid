@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 18:39:07 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/14 20:47:17 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:50:56 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	main(int argc, char **argv, char **envp)
 	pid_t	pid;
 	int		fd[2];
 
-	if(envp == NULL || envp[0] == NULL || path_finder(envp) == 0)
+	if (envp == NULL || envp[0] == NULL || path_finder(envp) == 0)
 		error("Error: PATH not found\n");
 	if (argc != 5)
 		error("Error: Wrong number of arguments\n");
-	if(check_fd(argv[1]))
-		error("Error: File not found\n");
-	if(check_cmd(envp, argv, 2))
+	if (check_fd(argv[1]))
+		error("Error: File error\n");
+	if (check_cmd(envp, argv, 2))
 		error("Error: Command not found\n");
 	pipe(fd);
 	pid = fork();

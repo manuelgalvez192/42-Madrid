@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 18:39:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/14 19:36:16 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:53:04 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	path_finder(char **envp)
 {
 	int	i;
-	
 
 	i = 0;
 	while (envp[i])
@@ -75,7 +74,7 @@ char	*make_path(char *split_path, char *cmd)
 	path[i] = '/';
 	i++;
 	j = 0;
-	while (cmd[j] && cmd[j]!= ' ')
+	while (cmd[j] && cmd[j] != ' ')
 	{
 		path[i] = cmd[j];
 		i++;

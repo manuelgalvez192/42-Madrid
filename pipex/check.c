@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 18:39:00 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/14 20:32:27 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:34:01 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error(char *msg)
 {
-	write(1, msg, ft_strlen(msg));
+	write(2, msg, ft_strlen(msg));
 	exit(1);
 }
 
