@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:44:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/06/18 19:44:22 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/28 21:46:34 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ char	*free_map(char **map)
 {
 	int	i;
 
-	if (map == NULL)
-        return (NULL);
+	if (!map)
+		return (NULL);
 	i = 0;
 	while (map[i] != NULL)
 	{
@@ -25,6 +25,20 @@ char	*free_map(char **map)
 		i++;
 	}
 	free(map);
+	return (NULL);
+}
+
+char	*free_vars(t_vars *vars)
+{
+	//free_map(vars->map);
+	mlx_destroy_image(vars->mlx, vars->wall_img);
+	mlx_destroy_image(vars->mlx, vars->floor_img);
+	mlx_destroy_image(vars->mlx, vars->player_img);
+	mlx_destroy_image(vars->mlx, vars->exit_img);
+	mlx_destroy_image(vars->mlx, vars->collectible_img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
 	return (NULL);
 }
 
@@ -40,21 +54,6 @@ char	*check_valid_file(int fd, char *argv)
 	return (NULL);
 }
 
-char	*check_extension(char *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i] != '\0')
-		i++;
-	if (arg[i - 1] != 'r' || arg[i - 2] != 'e' || arg[i - 3] != 'b'
-		|| arg[i - 4] != '.')
-	{
-		ft_printf("Error\n de tipo de extension. Que acabe en .ber pls\n");
-		exit(0);
-	}
-	return (arg);
-}
 void	check_border(char **map)
 {
 	size_t	j;
@@ -72,16 +71,9 @@ void	check_border(char **map)
 	{
 		if (height == height_aux)
 			width++;
-		if (map[height][0] != '1')
+		if (map[height][0] != '1' || map[height][width - 1] != '1')
 		{
-			printf("Error\n los bordes no son correctos\n");
-			free_map(map);
-			*map = NULL;
-			exit(0);
-		}
-		if (map[height][width - 1] != '1')
-		{
-			printf("Error\n los bordes no son correctos\n");
+			ft_printf("Error\n los bordes no son correctos\n");
 			free_map(map);
 			*map = NULL;
 			exit(0);
@@ -95,16 +87,9 @@ void	check_border_side(char **map, size_t height, size_t j)
 {
 	while (map[0][j] != '\n')
 	{
-		if (map[0][j] != '1')
+		if (map[0][j] != '1' || map[height - 1][j] != '1')
 		{
-			printf("Error\n los bordes no son correctos\n");
-			free_map(map);
-			*map = NULL;
-			exit(0);
-		}
-		if (map[height - 1][j] != '1')
-		{
-			printf("Error\n los bordes no son correctos\n");
+			ft_printf("Error\n los bordes no son correctos\n");
 			free_map(map);
 			*map = NULL;
 			exit(0);

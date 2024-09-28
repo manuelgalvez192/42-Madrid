@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:43:54 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/06/07 21:43:56 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/28 17:31:10 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ char	*check_size_map(char **map)
 
 	width = ft_strlen(map[0]) - 1;
 	height = check_width_size(map, width);
-	if ((width) == height)
-	{
-		ft_printf("Error\n de mapa. No es un rectangulo\n");
-		free_map(map);
-		exit(0);
-	}
 	if (width < 3 || height < 3)
 	{
 		ft_printf("Error\n de mapa. El mapa esta chikito\n");
@@ -52,7 +46,7 @@ size_t	check_width_size(char **map, size_t width)
 			width_aux++;
 		if (width_aux != width)
 		{
-			printf("Error\n de mapa. Los lados no miden lo mismo\n");
+			ft_printf("Error\n de mapa. Los lados no miden lo mismo\n");
 			free_map(map);
 			exit(0);
 		}
@@ -62,10 +56,13 @@ size_t	check_width_size(char **map, size_t width)
 
 char	*check_chars(char **map)
 {
-	int count_p = 0;
-	int count_e = 0;
-	int count_c = 0;
+	int	count_p;
+	int	count_e;
+	int	count_c;
 
+	count_p = 0;
+	count_e = 0;
+	count_c = 0;
 	count_and_validate_chars(map, &count_p, &count_e, &count_c);
 	check_border(map);
 	if (map == NULL)
@@ -74,19 +71,19 @@ char	*check_chars(char **map)
 	if (count_p != 1 || count_e != 1 || count_c < 1)
 	{
 		if (count_p != 1)
-			printf("Error\n el carácter 'P'. Comprueba cuantas veces sale\n");
+			ft_printf("Error\n el carácter 'P.\n");
 		if (count_e != 1)
-			printf("Error\n el carácter 'E'. Comprueba cuantas veces sale\n");
+			ft_printf("Error\n el carácter 'E'.\n");
 		if (count_c < 1)
-			printf("Error\n el carácter 'C'. No hay coleccionables\n");
+			ft_printf("Error\n el carácter 'C'.\n");
 		free_map(map);
 		exit(0);
 	}
-
 	return (NULL);
 }
 
-void	count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c)
+void	count_and_validate_chars(char **map, int *count_p, int *count_e,
+	int *count_c)
 {
 	int	i;
 	int	j;
@@ -100,7 +97,7 @@ void	count_and_validate_chars(char **map, int *count_p, int *count_e, int *count
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'P'
 				&& map[i][j] != 'E' && map[i][j] != 'C' && map[i][j] != '\n')
 			{
-				printf("Error\n de caracteres %c en el mapa\n", map[i][j]); 
+				ft_printf("Error\n de caracteres %c en el mapa\n", map[i][j]);
 				free_map(map);
 				exit(0);
 			}

@@ -27,6 +27,7 @@ SRCS = main.c \
 	   error_manager.c \
 	   error_free.c \
 	   images_manager.c \
+	   flood_fill.c \
 	   mlx/mlx_init.c \
 	   mlx/mlx_new_window.c \
 

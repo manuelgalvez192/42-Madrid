@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:48:34 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/06/07 20:48:36 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/28 21:44:34 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 
 int	main(int argc, char **argv)
 {
-	char	**map;
+	t_vars	vars;
 	int		fd;
 
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
 		check_valid_file(fd, argv[1]);
-		map = NULL;
-		map = store_map(map, fd);
+		vars.map = NULL;
+		vars.map = store_map(vars.map, fd);
 		fd = open(argv[1], O_RDONLY);
-		map = fill_map(fd, map);
-		check_size_map(map);
-		check_chars(map);
-		game_manager(map);
-		free_map(map);
-		if (map == NULL)
+		vars.map = fill_map(fd, vars.map);
+		check_size_map(vars.map);
+		check_chars(vars.map);
+		if(verify_access(&vars))
+		{
+			free_map(vars.map);
+			exit(0);
+		}
+		game_manager(vars);
+		free_vars(&vars);
+		if (vars.map == NULL)
 			return (0);
 		close(fd);
 	}
@@ -47,12 +52,12 @@ char	**store_map(char **map, int fd)
 
 	line = get_next_line(fd);
 	width = ft_strlen(line);
-	free(line);
-	height = 1;
-	while ((line = get_next_line(fd)) != NULL)
+	height = 0;
+	while (line != NULL)
 	{
 		height++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	map = ft_calloc(sizeof(char *), height + 1);
 	if (map == NULL)
@@ -74,7 +79,8 @@ char	**fill_map(int fd, char **map)
 	char	*line;
 
 	i = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		j = 0;
 		while (line[j] != '\0')
@@ -83,10 +89,27 @@ char	**fill_map(int fd, char **map)
 			j++;
 		}
 		map[i][j] = '\0';
-        free(line);
-        line = NULL;
+		free(line);
+		line = NULL;
+		line = get_next_line(fd);
 		i++;
 	}
 	close(fd);
 	return (map);
+}
+
+char	*check_extension(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i] != '\0')
+		i++;
+	if (arg[i - 1] != 'r' || arg[i - 2] != 'e' || arg[i - 3] != 'b'
+		|| arg[i - 4] != '.')
+	{
+		ft_printf("Error\n de tipo de extension. Que acabe en .ber pls\n");
+		exit(0);
+	}
+	return (arg);
 }

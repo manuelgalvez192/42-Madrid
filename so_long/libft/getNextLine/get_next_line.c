@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:43:34 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/05/27 19:44:00 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:14:42 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ char	*get_next_line(int fd)
 		return (free_null(&buffer, &new_line[fd]));
 	line = ft_strjoin_gnl(NULL, new_line[fd]);
 	read_bytes = 1;
-	while (!ft_strchr_gnl(buffer, '\n') && read_bytes > 0 && !ft_strchr_gnl(line, '\n'))
+	while (!ft_strchr_gnl(buffer, '\n') && read_bytes > 0
+		&& !ft_strchr_gnl(line, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes < 0)
