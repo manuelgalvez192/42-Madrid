@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:44:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/28 21:46:34 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/01 17:49:14 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,16 @@ char	*free_map(char **map)
 
 char	*free_vars(t_vars *vars)
 {
-	//free_map(vars->map);
-	mlx_destroy_image(vars->mlx, vars->wall_img);
-	mlx_destroy_image(vars->mlx, vars->floor_img);
-	mlx_destroy_image(vars->mlx, vars->player_img);
-	mlx_destroy_image(vars->mlx, vars->exit_img);
-	mlx_destroy_image(vars->mlx, vars->collectible_img);
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
-	free(vars->mlx);
+	if (vars->map != NULL)
+		free_map(vars->map);
+	//mlx_destroy_image(vars->mlx, vars->wall_img);
+	//mlx_destroy_image(vars->mlx, vars->floor_img);
+	//mlx_destroy_image(vars->mlx, vars->player_img);
+	//mlx_destroy_image(vars->mlx, vars->exit_img);
+	//mlx_destroy_image(vars->mlx, vars->collectible_img);
+	//mlx_destroy_window(vars->mlx, vars->win);
+	//mlx_destroy_display(vars->mlx);
+	//free(vars->mlx);
 	return (NULL);
 }
 
