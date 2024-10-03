@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:36:15 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/01 19:39:50 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:57:01 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	game_manager(t_vars vars)
 	win_width = get_map_width(vars.map) * (64 - 2);
 	wind_height = get_map_height(vars.map) * 64;
 	mlx = mlx_init(win_width, wind_height, "so_long", false);
-	
+	put_images(&vars, mlx);
 	mlx_loop(mlx);
 }
 
