@@ -1,0 +1,46 @@
+# Archivos generados por Visual Studio
+*.sln
+*.suo
+*.user
+*.vcxproj
+*.vcxproj.user
+*.ncb
+*.idb
+*.pdb
+*.ipch/
+*.log
+*.obj
+*.exe
+*.dll
+*.lib
+*.tmp
+*.cache
+
+# Archivos generados por Vim
+*~         # Archivos temporales de Vim
+*.swp      # Archivos swap de Vim
+*.swo      # Archivos de respaldo de Vim
+
+# Archivos de compilación de C/C++
+*.o        # Archivos objeto
+*.out      # Archivos de salida
+*.a        # Archivos de biblioteca estática
+*.so       # Archivos de biblioteca compartida
+*.d        # Archivos de dependencias
+
+# Directorios de compilación comunes
+build/
+bin/
+obj/
+debug/
+release/
+*.vs/
+*.vscode/
+
+# Archivos de configuración del entorno
+*.env
+
+# Archivos de dependencias
+*.lock
+node_modules/
+vendor/
