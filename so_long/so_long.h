@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:52:40 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/01 20:28:15 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:23:44 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 
 /* --- struct --- */
 typedef struct s_vars {
-	char **map;
-	void *wall_img;
-	void *floor_img;
-	void *player_img;
-	void *exit_img;
-	void *collectible_img;
+	mlx_t	*mlx;
+	char 	**map;
+	void 	*wall_img;
+	void 	*floor_img;
+	void 	*player_img;
+	void 	*exit_img;
+	void 	*collectible_img;
 } t_vars;
 
 typedef struct s_flood_data {
@@ -62,13 +63,13 @@ void	check_border_side(char **map, size_t height, size_t j);
 void	game_manager(t_vars vars);
 int		get_map_width(char **map);
 int		get_map_height(char **map);
-int		handle_keypress(int keycode, t_vars *vars);
-int		close_window(t_vars *vars);
+void	handle_keypress(mlx_key_data_t keydata, void* param);
+void	close_window(void* param);
 
 
 /* --- images_manager --- */
-void	put_images(t_vars *vars, mlx_t	*mlx);
-void	put_other_images(mlx_t *mlx, char c, int i, int j);
+void	put_images(t_vars *vars);
+void	put_other_images(t_vars *vars, char c, int i, int j);
 
 
 /* --- flood_fill --- */

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:36:15 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/03 15:57:01 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:23:25 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@ void	game_manager(t_vars vars)
 {
 	int		win_width;
 	int		wind_height;
-	mlx_t	*mlx;
-
+	
 	win_width = get_map_width(vars.map) * (64 - 2);
 	wind_height = get_map_height(vars.map) * 64;
-	mlx = mlx_init(win_width, wind_height, "so_long", false);
-	put_images(&vars, mlx);
-	mlx_loop(mlx);
+	vars.mlx = mlx_init(win_width, wind_height, "so_long", false);
+	put_images(&vars);
+	mlx_close_hook(vars.mlx, &close_window, &vars);
+	mlx_key_hook(vars.mlx, &handle_keypress, &vars);
+	mlx_loop(vars.mlx);
 }
 
 int	get_map_width(char **map)
@@ -42,16 +43,17 @@ int	get_map_height(char **map)
 	return (height);
 }
 
-int	handle_keypress(int keycode, t_vars *vars)
+void	handle_keypress(mlx_key_data_t keydata, void* param)
 {
-	if (keycode == 65307)
+	t_vars *vars = (t_vars*)param;
+	if (keydata.key == MLX_KEY_ESCAPE)
 		close_window(vars);
-	return (0);
+	return ;
 }
 
-int	close_window(t_vars *vars)
+void	close_window(void* param)
 {
+	t_vars *vars = (t_vars*)param;
 	free_vars(vars);
 	exit(0);
-	return (0);
 }

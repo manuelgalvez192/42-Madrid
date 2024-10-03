@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:48:34 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/30 13:04:30 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:30:16 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ int	main(int argc, char **argv)
 		vars.map = fill_map(fd, vars.map);
 		check_size_map(vars.map);
 		check_chars(vars.map);
-		if(verify_access(&vars))
-		{
-			free_map(vars.map);
-			exit(0);
-		}
 		game_manager(vars);
+		printf("*************************************before free\n");
 		free_vars(&vars);
+		printf("after free\n");
 		if (vars.map == NULL)
 			return (0);
 		close(fd);
