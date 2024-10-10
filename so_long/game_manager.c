@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:36:15 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:23:25 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:41:35 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@ int	get_map_height(char **map)
 	while (map[height])
 		height++;
 	return (height);
-}
-
-void	handle_keypress(mlx_key_data_t keydata, void* param)
-{
-	t_vars *vars = (t_vars*)param;
-	if (keydata.key == MLX_KEY_ESCAPE)
-		close_window(vars);
-	return ;
 }
 
 void	close_window(void* param)

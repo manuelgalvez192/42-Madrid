@@ -25,6 +25,7 @@ SRCS = main.c \
 	   error_free.c \
 	   images_manager.c \
 	   flood_fill.c \
+	   player_movement.c \
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)

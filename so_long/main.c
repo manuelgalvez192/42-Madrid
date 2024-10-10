@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:48:34 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:30:16 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:56:10 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ int	main(int argc, char **argv)
 		vars.map = NULL;
 		vars.map = store_map(vars.map, fd);
 		fd = open(argv[1], O_RDONLY);
-		vars.map = fill_map(fd, vars.map);
+		vars.map = fill_map(fd, &vars);
 		check_size_map(vars.map);
 		check_chars(vars.map);
 		game_manager(vars);
-		printf("*************************************before free\n");
 		free_vars(&vars);
 		printf("after free\n");
 		if (vars.map == NULL)
@@ -69,7 +68,7 @@ char	**store_map(char **map, int fd)
 	return (close(fd), map);
 }
 
-char	**fill_map(int fd, char **map)
+char	**fill_map(int fd, t_vars *vars)
 {
 	int		i;
 	int		j;
@@ -82,17 +81,22 @@ char	**fill_map(int fd, char **map)
 		j = 0;
 		while (line[j] != '\0')
 		{
-			map[i][j] = line[j];
+			vars->map[i][j] = line[j];
+			if (vars->map[i][j] == 'P')
+			{
+				vars->player_x = j;
+				vars->player_y = i;
+			}
 			j++;
 		}
-		map[i][j] = '\0';
+		vars->map[i][j] = '\0';
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
 		i++;
 	}
 	close(fd);
-	return (map);
+	return (vars->map);
 }
 
 char	*check_extension(char *arg)

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 18:55:24 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:31:45 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:21:22 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	put_images(t_vars *vars)
 {
-	mlx_texture_t *texture;
-	mlx_image_t *img;
 	int	i;
 	int	j;
 
@@ -26,62 +24,40 @@ void	put_images(t_vars *vars)
 		while (vars->map[i][j])
 		{
 			if (vars->map[i][j] == '1')
-			{
-				texture = mlx_load_png("./sprites/murillo.png");
-				img = mlx_texture_to_image(vars->mlx, texture);
-				mlx_image_to_window(vars->mlx, img, j * 64, i * 64);
-				mlx_set_instance_depth(&img->instances[0], 1);
-				mlx_delete_texture(texture);
-			}	
+				put_image_to_window(vars, "./sprites/murillo.png", j, i, 1);
 			else if (vars->map[i][j] == '0')
+				put_image_to_window(vars, "./sprites/fondo.png", j, i, 1);
+			else	if (vars->map[i][j] == 'P')
 			{
-				texture = mlx_load_png("./sprites/fondo.png");
-				img = mlx_texture_to_image(vars->mlx, texture);
-				mlx_image_to_window(vars->mlx, img, j * 64, i * 64);
-				mlx_set_instance_depth(&img->instances[0], 1);
-				mlx_delete_texture(texture);
+				vars->player_img = put_image_to_window(vars, "./sprites/knight.png", j, i, 2);
+				put_image_to_window(vars, "./sprites/fondo.png", j, i, 1);
 			}
-			else
-				put_other_images(vars, vars->map[i][j], i, j);
+			else if (vars->map[i][j] == 'E')
+				put_image_to_window(vars, "./sprites/salida.png", j, i, 1);
+			else if (vars->map[i][j] == 'C')
+				put_image_to_window(vars, "./sprites/recolectable.png", j, i, 1);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	put_other_images(t_vars *vars, char c, int i, int j)
+mlx_image_t	*put_image_to_window(t_vars *vars, char *file_path, int x, int y, int depth)
 {
 	mlx_texture_t *texture;
 	mlx_image_t *img;
-	
-	if (c == 'P')
-	{	
-		texture = mlx_load_png("./sprites/knight.png");
-		img = mlx_texture_to_image(vars->mlx, texture);
-		mlx_image_to_window(vars->mlx, img, j * 64, i * 64);
-		vars->player_img = img;
-		mlx_delete_texture(texture);
-		mlx_set_instance_depth(&img->instances[0], 2);
-		texture = mlx_load_png("./sprites/fondo.png");
-		img = mlx_texture_to_image(vars->mlx, texture);
-		mlx_image_to_window(vars->mlx, img, j * 64, i * 64);
-		mlx_set_instance_depth(&img->instances[0], 1);
-		mlx_delete_texture(texture);
-	}
-	else if (c == 'E')
+
+	texture = mlx_load_png(file_path);
+	if (!texture)
+		return (NULL);
+	img = mlx_texture_to_image(vars->mlx, texture);
+	if (!img)
 	{
-		texture = mlx_load_png("./sprites/salida.png");
-		img = mlx_texture_to_image(vars->mlx, texture);
-		mlx_image_to_window(vars->mlx, img, j * 64, i * 64);
-		mlx_set_instance_depth(&img->instances[0], 1);
 		mlx_delete_texture(texture);
+		return (NULL);
 	}
-	else if (c == 'C')
-	{
-		texture = mlx_load_png("./sprites/recolectable.png");
-		img = mlx_texture_to_image(vars->mlx, texture);
-		mlx_image_to_window(vars->mlx, img, j * 64, i * 64);
-		mlx_set_instance_depth(&img->instances[0], 1);
-		mlx_delete_texture(texture);
-	}
+	mlx_image_to_window(vars->mlx, img, x * 64, y * 64);
+	mlx_set_instance_depth(&img->instances[0], depth);
+	mlx_delete_texture(texture);
+	return (img);
 }
