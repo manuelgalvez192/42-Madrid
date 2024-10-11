@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 18:55:24 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/10 19:21:22 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:42:18 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	put_images(t_vars *vars)
 				put_image_to_window(vars, "./sprites/fondo.png", j, i, 1);
 			else	if (vars->map[i][j] == 'P')
 			{
-				vars->player_img = put_image_to_window(vars, "./sprites/knight.png", j, i, 2);
+				vars->player_img = put_image_to_window(vars, "./sprites/knight.png", j, i, 3);
 				put_image_to_window(vars, "./sprites/fondo.png", j, i, 1);
 			}
 			else if (vars->map[i][j] == 'E')

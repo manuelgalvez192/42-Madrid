@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:48:34 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/10 18:56:10 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:16:58 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	**fill_map(int fd, t_vars *vars)
 	char	*line;
 
 	i = 0;
+	vars->num_collectibles = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -86,7 +87,8 @@ char	**fill_map(int fd, t_vars *vars)
 			{
 				vars->player_x = j;
 				vars->player_y = i;
-			}
+			}else if (vars->map[i][j] == 'C')
+				vars->num_collectibles++;
 			j++;
 		}
 		vars->map[i][j] = '\0';

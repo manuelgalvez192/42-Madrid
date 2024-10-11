@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:38:26 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/10 19:10:10 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:40:18 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,26 @@ void	move_player(t_vars *vars, int new_x, int new_y)
 {
 	if (vars->map[new_y][new_x] == '1')
 		return;
-	vars->map[vars->player_y][vars->player_x] = '0';
-	vars->map[new_y][new_x] = 'P';
-	vars->player_x = new_x;
-	vars->player_y = new_y;
-	vars->player_img->instances[0].x = new_x * 64;
-	vars->player_img->instances[0].y = new_y * 64;
-	print_map(vars);
+	if (vars->map[new_y][new_x] == 'C')
+	{
+		vars->num_collectibles--;
+		put_image_to_window(vars, "./sprites/fondo.png", new_x, new_y, 2);
+	}
+	if (vars->map[new_y][new_x] == 'E' && vars->num_collectibles == 0)
+	{
+		ft_printf("You win!\n");
+		close_window(vars);
+	}
+	if (vars->map[new_y][new_x] != 'E')
+	{
+		vars->map[vars->player_y][vars->player_x] = '0';
+		vars->map[new_y][new_x] = 'P';
+		vars->player_x = new_x;
+		vars->player_y = new_y;
+		vars->player_img->instances[0].x = new_x * 64;
+		vars->player_img->instances[0].y = new_y * 64;
+		ft_printf("Numero de movimientos: %d\n", ++vars->num_moves);
+	}
 }
 
 void print_map(t_vars *vars)
