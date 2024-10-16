@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:41:02 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/28 19:51:20 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:04:17 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ bool	verify_access(t_vars *vars)
 {
 	char			**map_clone;
 	t_flood_data	data;
+	int				i;
+	int				j;
 
 	map_clone = clone_map(vars->map);
 	if (!map_clone)
@@ -82,8 +84,18 @@ bool	verify_access(t_vars *vars)
 	data.total_collectibles = 0;
 	data.collectibles_count = 0;
 	data.has_exit = false;
+	i = -1;
+	while (vars->map[++i])
+	{
+		j = -1;
+		while (vars->map[i][++j])
+		{
+			if (vars->map[i][j] == 'C')
+				data.total_collectibles++;
+		}
+	}
 	locate_position(vars->map, &data.start_x, &data.start_y);
 	flood_fill(map_clone, &data, data.start_x, data.start_y);
-	free_map(map_clone);
-	return (data.has_exit && data.collectibles_count == data.total_collectibles);
+	return (free_map(map_clone),
+		data.has_exit && data.collectibles_count == data.total_collectibles);
 }

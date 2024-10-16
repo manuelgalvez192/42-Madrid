@@ -35,7 +35,6 @@ BNS = $(BONUS:.c=.o)
 
 # The default target - builds the project
 all: $(NAME)
-	./$(NAME) $(MAP)
 
 # A rule to build the project from the .o files
 $(NAME): $(LIBFT_LIB) $(MLX_LIB) libmlx $(OBJS)
@@ -71,6 +70,45 @@ re: fclean all
 # A rule to run the program
 run: all
 	./$(NAME) $(MAP)
+
+error: all
+	@echo
+	-./$(NAME)
+	@echo
+	-./$(NAME) maps/invalid/.ber
+	@echo
+	-./$(NAME) maps/invalid/no_extension
+	@echo
+	-./$(NAME) maps/invalid/other_extension.txt
+	@echo
+	-./$(NAME) maps/invalid/no_file.ber
+	@echo
+	chmod 000 maps/invalid/change_permissions.ber
+	-./$(NAME) maps/invalid/change_permissions.ber
+	@chmod 644 maps/invalid/change_permissions.ber
+	@echo
+	-./$(NAME) maps/invalid/empty.ber
+	@echo
+	-./$(NAME) maps/invalid/not_surrounded.ber
+	@echo
+	-./$(NAME) maps/invalid/not_rectangular0.ber
+	@echo
+	-./$(NAME) maps/invalid/not_rectangular1.ber
+	@echo
+	-./$(NAME) maps/invalid/no_collectibles.ber
+	@echo
+	-./$(NAME) maps/invalid/no_starting_position.ber
+	@echo
+	-./$(NAME) maps/invalid/two_starting_positions.ber
+	@echo
+	-./$(NAME) maps/invalid/no_exit.ber
+	@echo
+	-./$(NAME) maps/invalid/two_exits.ber
+	@echo
+	-./$(NAME) maps/invalid/other_characters.ber
+	@echo
+	-./$(NAME) maps/invalid/no_path.ber
+	@echo
 
 # A special rule to tell make that these targets aren't files
 .PHONY: all fclean re clean bonus run

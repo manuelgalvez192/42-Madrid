@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:52:40 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/11 20:37:52 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:49:41 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_vars {
 	int			num_moves;
 	int			player_x;
 	int			player_y;
+	int			depth;
 } t_vars;
 
 typedef struct s_flood_data {
@@ -68,13 +69,13 @@ void		close_window(void* param);
 
 /* --- images_manager --- */
 void		put_images(t_vars *vars);
-mlx_image_t	*put_image_to_window(t_vars *vars, char *file_path, int x, int y, int depth);
+void		put_other_images(t_vars *vars, int i, int j);
+mlx_image_t	*put_image_to_window(t_vars *vars, char *file_path, int x, int y);
 
 
 /* --- player_movement --- */
 void		handle_keypress(mlx_key_data_t keydata, void* param);
 void		move_player(t_vars *vars, int new_x, int new_y);
-void 		print_map(t_vars *vars);
 
 
 /* --- flood_fill --- */

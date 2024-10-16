@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:43:54 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/09/30 12:57:01 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:07:50 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ char	*check_size_map(char **map)
 	size_t	width;
 	size_t	height;
 
+	if (!map || !map[0])
+	{
+		ft_printf("Error\n de mapa. El mapa esta vacio\n");
+		free_map(map);
+		exit(0);
+	}
 	width = ft_strlen(map[0]) - 1;
 	height = check_width_size(map, width);
 	if (width < 3 || height < 3)

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:44:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/03 19:31:09 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:02:42 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ char	*free_vars(t_vars *vars)
 {
 	if (vars->map != NULL)
 		free_map(vars->map);
-	// if (vars->player_img)
-	//  	mlx_destroy_image(vars->mlx, vars->player_img);
 	if (vars->mlx)
 		mlx_terminate(vars->mlx);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:48:34 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/11 20:16:58 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/16 20:02:08 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ int	main(int argc, char **argv)
 		vars.map = fill_map(fd, &vars);
 		check_size_map(vars.map);
 		check_chars(vars.map);
+		if (!verify_access(&vars))
+		{
+			ft_printf("Error\n No se puede acceder a ciertos elementos.\n");
+			free_map(vars.map);
+			exit(0);
+		}
 		game_manager(vars);
 		free_vars(&vars);
-		printf("after free\n");
 		if (vars.map == NULL)
 			return (0);
 		close(fd);
@@ -47,6 +52,11 @@ char	**store_map(char **map, int fd)
 	int		i;
 
 	line = get_next_line(fd);
+	if (!line)
+	{
+		ft_printf("Error\n de mapa. El mapa esta vacio\n");
+		exit(0);
+	}
 	width = ft_strlen(line);
 	height = 0;
 	while (line != NULL)
@@ -87,7 +97,8 @@ char	**fill_map(int fd, t_vars *vars)
 			{
 				vars->player_x = j;
 				vars->player_y = i;
-			}else if (vars->map[i][j] == 'C')
+			}
+			else if (vars->map[i][j] == 'C')
 				vars->num_collectibles++;
 			j++;
 		}
