@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:41:02 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/15 19:04:17 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:49:34 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,14 @@ bool	verify_access(t_vars *vars)
 	flood_fill(map_clone, &data, data.start_x, data.start_y);
 	return (free_map(map_clone),
 		data.has_exit && data.collectibles_count == data.total_collectibles);
+}
+
+void	call_floodfill(t_vars vars)
+{
+	if (!verify_access(&vars))
+	{
+		ft_printf("Error\n No se puede acceder a ciertos elementos.\n");
+		free_map(vars.map);
+		exit(0);
+	}
 }

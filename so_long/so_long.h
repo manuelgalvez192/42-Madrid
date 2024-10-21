@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:52:40 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/16 19:49:41 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/21 21:04:11 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ typedef struct s_flood_data {
 
 /* --- main functions --- */
 char		**store_map(char **map, int fd);
+char		**store_map_aux(char **map, int width, int height);
 char		**fill_map(int fd, t_vars *vars);
-char		*check_extension(char *arg);
+void		fill_map_aux(t_vars *vars, int i, char *line);
 
 
 /* --- error_manager functions --- */
@@ -50,6 +51,7 @@ char		*check_size_map(char **map);
 size_t		check_width_size(char **map, size_t width);
 char		*check_chars(char **map);
 void		count_and_validate_chars(char **map, int *count_p, int *count_e, int *count_c);
+char		*check_extension(char *arg);
 
 
 /* --- error_free functions --- */
@@ -83,5 +85,6 @@ char		**clone_map(char **map);
 void		flood_fill(char **map, t_flood_data *data, int x, int y);
 void		locate_position(char **map, int *x, int *y);
 bool		verify_access(t_vars *vars);
+void		call_floodfill(t_vars vars);
 
 #endif

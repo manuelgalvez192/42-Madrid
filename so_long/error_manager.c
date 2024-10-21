@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:43:54 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/15 18:07:50 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:20:26 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,20 @@ void	count_and_validate_chars(char **map, int *count_p, int *count_e,
 				(*count_c)++;
 		}
 	}
+}
+
+char	*check_extension(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i] != '\0')
+		i++;
+	if (arg[i - 1] != 'r' || arg[i - 2] != 'e' || arg[i - 3] != 'b'
+		|| arg[i - 4] != '.')
+	{
+		ft_printf("Error\n de tipo de extension. Que acabe en .ber pls\n");
+		exit(0);
+	}
+	return (arg);
 }

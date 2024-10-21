@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:48:34 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/16 20:02:08 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/10/21 21:05:53 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,7 @@ int	main(int argc, char **argv)
 		vars.map = fill_map(fd, &vars);
 		check_size_map(vars.map);
 		check_chars(vars.map);
-		if (!verify_access(&vars))
-		{
-			ft_printf("Error\n No se puede acceder a ciertos elementos.\n");
-			free_map(vars.map);
-			exit(0);
-		}
+		call_floodfill(vars);
 		game_manager(vars);
 		free_vars(&vars);
 		if (vars.map == NULL)
@@ -49,7 +44,6 @@ char	**store_map(char **map, int fd)
 	char	*line;
 	int		width;
 	int		height;
-	int		i;
 
 	line = get_next_line(fd);
 	if (!line)
@@ -65,6 +59,14 @@ char	**store_map(char **map, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	map = store_map_aux(map, width, height);
+	return (close(fd), map);
+}
+
+char	**store_map_aux(char **map, int width, int height)
+{
+	int	i;
+
 	map = ft_calloc(sizeof(char *), height + 1);
 	if (map == NULL)
 		return (NULL);
@@ -75,13 +77,12 @@ char	**store_map(char **map, int fd)
 		if (map[i++] == NULL)
 			return (NULL);
 	}
-	return (close(fd), map);
+	return (map);
 }
 
 char	**fill_map(int fd, t_vars *vars)
 {
 	int		i;
-	int		j;
 	char	*line;
 
 	i = 0;
@@ -89,41 +90,29 @@ char	**fill_map(int fd, t_vars *vars)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		j = 0;
-		while (line[j] != '\0')
-		{
-			vars->map[i][j] = line[j];
-			if (vars->map[i][j] == 'P')
-			{
-				vars->player_x = j;
-				vars->player_y = i;
-			}
-			else if (vars->map[i][j] == 'C')
-				vars->num_collectibles++;
-			j++;
-		}
-		vars->map[i][j] = '\0';
+		fill_map_aux(vars, i, line);
 		free(line);
-		line = NULL;
 		line = get_next_line(fd);
 		i++;
 	}
-	close(fd);
-	return (vars->map);
+	return (close(fd), vars->map);
 }
 
-char	*check_extension(char *arg)
+void	fill_map_aux(t_vars *vars, int i, char *line)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (arg[i] != '\0')
-		i++;
-	if (arg[i - 1] != 'r' || arg[i - 2] != 'e' || arg[i - 3] != 'b'
-		|| arg[i - 4] != '.')
+	j = 0;
+	while (line[j] != '\0')
 	{
-		ft_printf("Error\n de tipo de extension. Que acabe en .ber pls\n");
-		exit(0);
+		vars->map[i][j] = line[j];
+		if (vars->map[i][j] == 'P')
+		{
+			vars->player_x = j;
+			vars->player_y = i;
+		}
+		else if (vars->map[i][j] == 'C')
+			vars->num_collectibles++;
+		j++;
 	}
-	return (arg);
 }
