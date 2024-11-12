@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:38:26 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/16 19:59:40 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:59:02 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	move_player(t_vars *vars, int new_x, int new_y)
 	{
 		vars->num_collectibles--;
 		vars->depth = 2;
-		put_image_to_window(vars, "./sprites/fondo.png", new_x, new_y);
+		put_image_to_window(vars, "./textures/fondo.png", new_x, new_y);
 	}
 	if (vars->map[new_y][new_x] == 'E' && vars->num_collectibles == 0)
 	{
-		ft_printf("You win!\n");
+		ft_printf("\033[1;32m""You win!\n""\033[0m");
 		close_window(vars);
 	}
 	if (vars->map[new_y][new_x] != 'E')

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 19:44:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/15 19:02:42 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:04:20 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	check_border(char **map)
 		{
 			ft_printf("Error\n los bordes no son correctos\n");
 			free_map(map);
-			*map = NULL;
 			exit(0);
 		}
 		height++;
@@ -86,7 +85,6 @@ void	check_border_side(char **map, size_t height, size_t j)
 		{
 			ft_printf("Error\n los bordes no son correctos\n");
 			free_map(map);
-			*map = NULL;
 			exit(0);
 		}
 		j++;

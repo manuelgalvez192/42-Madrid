@@ -1,6 +1,7 @@
+MAKEFLAGS += --no-print-directory
 # The name of your project
 NAME = so_long
-MAP = map.ber
+MAP = ./maps/map.ber
 LIBFT = ./libft/
 LIBFT_LIB = $(LIBFT)libft.a
 LIBMLX	:= ./MLX42

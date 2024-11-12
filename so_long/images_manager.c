@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 18:55:24 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/16 20:00:39 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:58:36 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	put_images(t_vars *vars)
 			if (vars->map[i][j] == '1')
 			{
 				vars->depth = 1;
-				put_image_to_window(vars, "./sprites/murillo.png", j, i);
+				put_image_to_window(vars, "./textures/murillo.png", j, i);
 			}
 			else if (vars->map[i][j] == '0')
 			{
 				vars->depth = 1;
-				put_image_to_window(vars, "./sprites/fondo.png", j, i);
+				put_image_to_window(vars, "./textures/fondo.png", j, i);
 			}
 			else
 				put_other_images(vars, i, j);
@@ -46,19 +46,19 @@ void	put_other_images(t_vars *vars, int i, int j)
 	{
 		vars->depth = 3;
 		vars->player_img = put_image_to_window(vars,
-				"./sprites/knight.png", j, i);
+				"./textures/knight.png", j, i);
 		vars->depth = 1;
-		put_image_to_window(vars, "./sprites/fondo.png", j, i);
+		put_image_to_window(vars, "./textures/fondo.png", j, i);
 	}
 	else if (vars->map[i][j] == 'E')
 	{
 		vars->depth = 1;
-		put_image_to_window(vars, "./sprites/salida.png", j, i);
+		put_image_to_window(vars, "./textures/salida.png", j, i);
 	}
 	else if (vars->map[i][j] == 'C')
 	{
 		vars->depth = 1;
-		put_image_to_window(vars, "./sprites/recolectable.png", j, i);
+		put_image_to_window(vars, "./textures/recolectable.png", j, i);
 	}
 }
 

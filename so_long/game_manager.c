@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:36:15 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/15 19:01:38 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:58:59 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	game_manager(t_vars vars)
 	int		wind_height;
 
 	vars.num_moves = 0;
-	win_width = get_map_width(vars.map) * (64 - 2);
+	win_width = (get_map_width(vars.map) - 1) * 64;
 	wind_height = get_map_height(vars.map) * 64;
 	vars.mlx = mlx_init(win_width, wind_height, "so_long", false);
 	put_images(&vars);

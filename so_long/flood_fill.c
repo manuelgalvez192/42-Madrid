@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 17:41:02 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/10/21 20:49:34 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:59:26 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	flood_fill(char **map, t_flood_data *data, int x, int y)
 		map[y][x] == 'V')
 		return ;
 	if (map[y][x] == 'E')
+	{
 		data->has_exit = true;
+		return ;
+	}
 	if (map[y][x] == 'C')
 		data->collectibles_count++;
 	map[y][x] = 'V';
