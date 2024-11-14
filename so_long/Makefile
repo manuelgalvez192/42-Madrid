@@ -112,4 +112,4 @@ error: all
 	@echo
 
 # A special rule to tell make that these targets aren't files
-.PHONY: all fclean re clean bonus run
+.PHONY: all fclean re clean bonus run error
