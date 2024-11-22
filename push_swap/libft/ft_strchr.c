@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:35:45 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/01/16 19:36:26 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/01/20 21:03:40 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
-int	main(int argc, char **argv)
+char	*ft_strchr(const char *s, int c)
 {
-    if (argc < 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (0);
 }
+
+/*int	main(void)
+{
+	char *c = "abcdefgh";
+	char *q = "abcdefgh";
+	printf("%s \n", ft_strchr(c, '\0'));
+	printf("%s \n", strchr(q, '\0'));
+	return (0);
+}*/

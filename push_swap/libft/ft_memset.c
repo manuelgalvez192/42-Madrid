@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:35:45 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/01/12 19:49:59 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/01/16 20:38:33 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
-int	main(int argc, char **argv)
+void	*ft_memset(void *c, int a, size_t n)
 {
-    if (argc < 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)c)[i] = (unsigned char)a;
+		i++;
+	}
+	return (c);
 }
+
+/*int	main(void)
+{
+	char c[5] = "aaaa";
+	char q[5] = "aaaa";
+	ft_memset(c, 'd', 1);
+	printf("%s \n", c);
+	memset(q, 'd', 1);
+	printf("%s \n", q);
+	return (0);
+}*/

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:35:45 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/02/08 18:27:00 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/02/08 18:33:42 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
+#include <unistd.h>
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
-int	main(int argc, char **argv)
+void	ft_putnbr_fd(int n, int fd)
 {
-    if (argc < 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	char	digit;
+
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	digit = n % 10 + '0';
+	write(fd, &digit, 1);
 }

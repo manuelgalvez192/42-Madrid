@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:35:45 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/01/11 20:26:24 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/01/20 20:15:41 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
-int	main(int argc, char **argv)
+int	ft_isalnum(int c)
 {
-    if (argc < 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90)
+		|| (c >= 97 && c <= 122))
+		return (1);
+	return (0);
 }
+
+/*int	main(void)
+{
+	char c = '1';
+	printf("%d \n", ft_isnum(c));
+	return (0);
+}*/

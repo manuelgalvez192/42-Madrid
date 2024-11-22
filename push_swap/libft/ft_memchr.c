@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:35:45 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/01/17 17:03:54 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/01/24 20:29:30 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
-int	main(int argc, char **argv)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    if (argc < 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	size_t			i;
+	unsigned char	*strloop;
+
+	i = 0;
+	strloop = (unsigned char *)s;
+	while (n--)
+	{
+		if (strloop[i] == (unsigned char)c)
+			return (&strloop[i]);
+		i++;
+	}
+	return (NULL);
 }
+
+/*int	main(void)
+{
+	char *c = "abcdefg";
+	printf("%s \n", ft_memchr(c, 'f', 10));
+	printf("%s \n", memchr(c, 'f', 10));
+	return (0);
+}*/

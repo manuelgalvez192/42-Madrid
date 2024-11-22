@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:50:29 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/14 13:49:34 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/11/18 15:29:40 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/11/18 15:29:49 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void push_a(t_stack *stack)
+void	error(void)
 {
-    if (stack->b == NULL)
-        return;
-    t_node	*temp;
-    temp = stack->b;
-    stack->b = stack->b->next;
-    temp->next = stack->a;
-    stack->a = temp;
-    ft_printf("pa\n");
-}
-
-void push_b(t_stack *stack)
-{
-    if (stack->a == NULL)
-        return;
-    t_node	*temp;
-	temp = stack->a;
-    stack->a = stack->a->next;
-    temp->next = stack->b;
-    stack->b = temp;
-    ft_printf("pb\n");
+	ft_printf("Error\n");
+	exit(1);
 }

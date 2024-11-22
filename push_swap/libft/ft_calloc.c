@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:35:45 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/01/26 18:19:27 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/10/17 20:58:08 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
-int	main(int argc, char **argv)
+void	*ft_calloc(size_t count, size_t size)
 {
-    if (argc < 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	void	*ptr;
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = size * count;
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (0);
+	while (len > 0)
+	{
+		((unsigned char *)ptr)[i] = '\0';
+		i++;
+		len--;
+	}
+	return ((unsigned char *)ptr);
 }

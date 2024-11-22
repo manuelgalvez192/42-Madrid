@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:35:45 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/01/31 17:23:33 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/01/31 17:51:57 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
-int	main(int argc, char **argv)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    if (argc < 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	char	*ptr;
+	size_t	s1len;
+	size_t	s2len;
+
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	ptr = ft_calloc(((s1len + s2len) + 1), sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ft_strlcat(ptr, s1, s1len + 1);
+	ft_strlcat(ptr, s2, s2len + s1len + 1);
+	return (ptr);
 }
