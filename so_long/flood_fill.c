@@ -25,7 +25,7 @@ char	**clone_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		new_map[i] = strdup(map[i]);
+		new_map[i] = ft_strdup(map[i]);
 		i++;
 	}
 	new_map[i] = NULL;
