@@ -6,9 +6,11 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 12:28:01 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/15 12:28:07 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:56:27 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	ft_ps_atoi(const char *str)
 {
@@ -29,6 +31,8 @@ int	ft_ps_atoi(const char *str)
 			sing = -1;
 		pos++;
 	}
+	if (str[pos] == NULL)
+		return (0);
 	while (str[pos] >= '0' && str[pos] <= '9')
 	{
 		total = total * 10 + (str[pos] - '0');

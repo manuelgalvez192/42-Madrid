@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/18 15:36:27 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:48:16 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	rev_rotate_a(t_stack *stack);
 
 /* --- parse --- */
 void	parse(char	*str);
+void	check_digits(char **split);
+int		*fill_stack(char **split, int *stack);
+void	check_max_int(int *stack);
+
+/* --- ft_ps_atoi --- */
+int		ft_ps_atoi(const char *str);
 
 /* --- error --- */
 void	error(void);
