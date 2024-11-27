@@ -23,7 +23,7 @@ SRCS = main.c \
 	   rev_rotate.c \
 	   parse.c \
 	   error.c \
-	   ft_ps_atoi.c \
+	   ft_utils.c \
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)

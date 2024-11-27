@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/26 16:48:16 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:34:53 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	check_digits(char **split);
 int		*fill_stack(char **split, int *stack);
 void	check_max_int(int *stack);
 
-/* --- ft_ps_atoi --- */
+/* --- ft_utils --- */
 int		ft_ps_atoi(const char *str);
+int		ft_split_len(char **split);
 
 /* --- error --- */
 void	error(void);

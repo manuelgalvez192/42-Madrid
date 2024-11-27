@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:10:44 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/26 17:16:18 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:49:55 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ int	*fill_stack(char **split, int *stack)
 {
 	int	i;
 
-	stack = malloc(sizeof(int *) * ft_strlen(*split));
+	stack = malloc(sizeof(int *) * ft_split_len(split + 1));
 	if (!stack)
 		error();
 	i = 0;
 	while (split[i])
 	{
 		stack[i] = ft_ps_atoi(split[i]);
+		ft_printf("%d\n", i);
 		i++;
 	}
 	return (stack);
@@ -71,8 +72,8 @@ void	check_max_int(int *stack)
 	while (stack[i])
 	{
 		ft_printf("%d\n", stack[i]);
-		//if (stack[i] > 2147483647 || stack[i] < -2147483648)
-		//	error();
+		// if (stack[i] > 2147483647 || stack[i] < -2147483648)
+		// 	error();
 		i++;
 	}
 }
