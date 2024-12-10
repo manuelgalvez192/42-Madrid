@@ -6,25 +6,29 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/27 13:25:36 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:05:29 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void print_stack(t_node *stack) {
-    while (stack) {
-        printf("%d -> ", stack->value);
-        stack = stack->next;
-    }
-    ft_printf("NULL\n");
-}
-
 int	main(int argc, char **argv)
 {
-    if (argc < 2 || argc > 2)
-        error();
-    parse(argv[1]);
-    
-    return 0;
+	int		i;
+	t_stack	*stack;
+	
+	i = 1;
+	if (argc < 2)
+		error(NULL);
+	if (argc == 2)
+		parse(argv[1], stack);
+	else
+	{
+		while (i < argc)
+		{
+			parse(argv[i], stack);
+			i++;
+		}
+	}
+	return 0;
 }

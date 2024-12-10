@@ -6,31 +6,27 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:34:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/27 13:35:08 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:05:13 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "push_swap.h"
 
-int	ft_ps_atoi(const char *str)
+int	ft_ps_atoi(const char *str, char **split)
 {
-	int	pos;
-	int	total;
-	int	sing;
+	int		pos;
+	long	total;
+	int		sign;
 
 	total = 0;
-	sing = 1;
+	sign = 1;
 	pos = 0;
 	while (str[pos] == ' ' || (str[pos] >= 9 && str[pos] <= 13))
 		pos++;
 	if (str[pos] == '+' || str[pos] == '-')
 	{
-		if (str[pos] == '+')
-			sing = 1;
-		else
-			sing = -1;
+		if (str[pos] == '-')
+			sign = -1;
 		pos++;
 	}
 	if (str[pos] == '\0')
@@ -38,9 +34,11 @@ int	ft_ps_atoi(const char *str)
 	while (str[pos] >= '0' && str[pos] <= '9')
 	{
 		total = total * 10 + (str[pos] - '0');
+		if ((sign == 1 && total > INT_MAX) || (sign == -1 && -total < INT_MIN))
+            error(split);
 		pos++;
 	}
-	return (total * sing);
+	return (total * sign);
 }
 
 int	ft_split_len(char **split)
