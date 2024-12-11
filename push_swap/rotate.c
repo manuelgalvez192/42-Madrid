@@ -6,45 +6,45 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:50:19 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/14 13:48:39 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:38:32 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_a(t_stack *stack)
+void	rotate_a(t_data *data)
 {
 	t_node	*tmp;
 	t_node	*last;
 
-	tmp = stack->a;
-	last = stack->a;
+	tmp = data->a;
+	last = data->a;
 	while (last->next)
 		last = last->next;
-	stack->a = stack->a->next;
+	data->a = data->a->next;
 	last->next = tmp;
 	tmp->next = NULL;
 	ft_printf("ra\n");
 }
 
-void	rotate_b(t_stack *stack)
+void	rotate_b(t_data *data)
 {
 	t_node	*tmp;
 	t_node	*last;
 
-	tmp = stack->b;
-	last = stack->b;
+	tmp = data->b;
+	last = data->b;
 	while (last->next)
 		last = last->next;
-	stack->b = stack->b->next;
+	data->b = data->b->next;
 	last->next = tmp;
 	tmp->next = NULL;
 	ft_printf("rb\n");
 }
 
-void	rotate_rr(t_stack *stack)
+void	rotate_rr(t_data *data)
 {
-	rotate_a(stack);
-	rotate_b(stack);
+	rotate_a(data);
+	rotate_b(data);
 	ft_printf("rr\n");
 }

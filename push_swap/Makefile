@@ -24,6 +24,7 @@ SRCS = main.c \
 	   parse.c \
 	   error.c \
 	   ft_utils.c \
+	   list_utils.c
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)

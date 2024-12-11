@@ -6,32 +6,32 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:50:29 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/10 18:02:50 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:37:46 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void push_a(t_stack *stack)
+void push_a(t_data *data)
 {
-    if (stack->b == NULL)
+    if (data->b == NULL)
         return;
     t_node	*temp;
-    temp = stack->b;
-    stack->b = stack->b->next;
-    temp->next = stack->a;
-    stack->a = temp;
+    temp = data->b;
+    data->b = data->b->next;
+    temp->next = data->a;
+    data->a = temp;
     ft_printf("pa\n");
 }
 
-void push_b(t_stack *stack)
+void push_b(t_data *data)
 {
-    if (stack->a == NULL)
+    if (data->a == NULL)
         return;
     t_node	*temp;
-	temp = stack->a;
-    stack->a = stack->a->next;
-    temp->next = stack->b;
-    stack->b = temp;
+	temp = data->a;
+    data->a = data->a->next;
+    temp->next = data->b;
+    data->b = temp;
     ft_printf("pb\n");
 }

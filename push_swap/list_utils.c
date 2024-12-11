@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 19:10:44 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:56:29 by mgalvez-         ###   ########.fr       */
+/*   Created: 2024/12/11 12:46:28 by mgalvez-          #+#    #+#             */
+/*   Updated: 2024/12/11 17:54:44 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	parse_str(char	*str, t_data *data)
-{
-	if (*str == '\0')
-		error(NULL);
-	data->split = ft_split(str, ' ');
-	check_digits(data);
-	fill_node(data);
-}
-
-void	check_digits(t_data *data)
+void	fill_node(t_data *data)
 {
 	int	i;
-	int	j;
+	int	value;
 
 	i = 0;
 	while (data->split[i])
 	{
-		j = 0;
-		while (data->split[i][j])
-		{
-			if ((data->split[i][j] == '-' || data->split[i][j] == '+') && j == 0)
-				j++;
-			if (!ft_isdigit(data->split[i][j]))
-				error(data);
-			j++;
-		}
+		value = ft_ps_atoi(data->split[i], data);
+		add_to_list(data, value);
 		i++;
+	}
+}
+
+void	add_to_list(t_data *data, int value)
+{
+	t_node	*new;
+	t_node	*tmp;
+
+	new = malloc(sizeof(t_node));
+	if (!new)
+		error(NULL);
+	new->value = value;
+	new->next = NULL;
+	if (!data->a)
+		data->a = new;
+	else
+	{
+		tmp = data->a;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
 }

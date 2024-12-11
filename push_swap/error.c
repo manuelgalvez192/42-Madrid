@@ -6,18 +6,16 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:29:40 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/10 18:06:22 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:44:25 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(char **split, int *stack)
+void	error(t_data *data)
 {
-	if (split)
-		free_split(split);
-	if (stack)
-		free(stack);
+	if (data->split)
+		free_split(data->split);
 	ft_printf("Error\n");
 	exit(1);
 }

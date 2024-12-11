@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/10 18:06:12 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:54:55 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,43 @@ typedef struct s_node {
 	struct s_node	*next;
 }	t_node;
 
-typedef struct s_stack {
+typedef struct s_data {
 	t_node	*a;
 	t_node	*b;
-}	t_stack;
+	char	**split;
+}	t_data;
 
 /* --- swap functions --- */
-void	swap_a(t_stack *stack);
-void	swap_b(t_stack *stack);
-void	swap_ss(t_stack *stack);
+void	swap_a(t_data *data);
+void	swap_b(t_data *data);
+void	swap_ss(t_data *data);
 
 /* --- push functions --- */
-void	push_b(t_stack *stack);
-void	push_a(t_stack *stack);
+void	push_b(t_data *data);
+void	push_a(t_data *data);
 
 /* --- rotate functions --- */
-void	rotate_a(t_stack *stack);
-void	rotate_b(t_stack *stack);
-void	rotate_rr(t_stack *stack);
+void	rotate_a(t_data *data);
+void	rotate_b(t_data *data);
+void	rotate_rr(t_data *data);
 
 /* --- reverse rotate functions --- */
-void	rev_rotate_a(t_stack *stack);
+void	rev_rotate_a(t_data *data);
 
 /* --- parse --- */
-void	parse(char	*str, t_stack *stack);
-void	check_digits(char **split);
-void	fill_stack(char **split, t_stack *stack);
+void	parse(char	*str, t_data *data);
+void	check_digits(t_data *data);
 
 /* --- ft_utils --- */
-int		ft_ps_atoi(const char *str, char **split);
+int		ft_ps_atoi(const char *str, t_data *data);
 int		ft_split_len(char **split);
 
-/* --- error --- */
-void	error(char **split);
-void	free_split(char **split);
+/* --- list_utils --- */
+void	fill_node(t_data *data);
+void	add_to_list(t_data *data, int value);
 
+/* --- error --- */
+void	error(t_data *data);
+void	free_split(char **split);
 
 #endif

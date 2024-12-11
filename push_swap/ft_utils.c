@@ -6,13 +6,13 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:34:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/10 17:05:13 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:40:49 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_ps_atoi(const char *str, char **split)
+int	ft_ps_atoi(const char *str, t_data *data)
 {
 	int		pos;
 	long	total;
@@ -35,7 +35,7 @@ int	ft_ps_atoi(const char *str, char **split)
 	{
 		total = total * 10 + (str[pos] - '0');
 		if ((sign == 1 && total > INT_MAX) || (sign == -1 && -total < INT_MIN))
-            error(split);
+            error(data);
 		pos++;
 	}
 	return (total * sign);

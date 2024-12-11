@@ -6,45 +6,45 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:50:16 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/11/14 13:49:08 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:38:08 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rev_rotate_a(t_stack *stack)
+void	rev_rotate_a(t_data *data)
 {
 	t_node	*tmp;
 	t_node	*last;
 
-	tmp = stack->a;
-	last = stack->a;
+	tmp = data->a;
+	last = data->a;
 	while (last->next->next)
 		last = last->next;
-	stack->a = last->next;
-	stack->a->next = tmp;
+	data->a = last->next;
+	data->a->next = tmp;
 	last->next = NULL;
 	ft_printf("rra\n");
 }
 
-void	rev_rotate_b(t_stack *stack)
+void	rev_rotate_b(t_data *data)
 {
 	t_node	*tmp;
 	t_node	*last;
 
-	tmp = stack->b;
-	last = stack->b;
+	tmp = data->b;
+	last = data->b;
 	while (last->next->next)
 		last = last->next;
-	stack->b = last->next;
-	stack->b->next = tmp;
+	data->b = last->next;
+	data->b->next = tmp;
 	last->next = NULL;
 	ft_printf("rrb\n");
 }
 
-void	rev_rotate_rrr(t_stack *stack)
+void	rev_rotate_rrr(t_data *data)
 {
-	rev_rotate_a(stack);
-	rev_rotate_b(stack);
+	rev_rotate_a(data);
+	rev_rotate_b(data);
 	ft_printf("rrr\n");
 }
