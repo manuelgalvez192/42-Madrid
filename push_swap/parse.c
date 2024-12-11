@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 19:10:44 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:56:29 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:02:42 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ void	parse_str(char	*str, t_data *data)
 	fill_node(data);
 }
 
+void	parse_args(char *str, t_data *data, int i)
+{
+	if (*str == '\0')
+		error(NULL);
+	data->split[i] = ft_strdup(str);
+	ft_printf("---------------- %s\n", data->split[i]);
+	check_digits(data);
+	fill_node(data);
+}
+
 void	check_digits(t_data *data)
 {
 	int	i;
@@ -29,6 +39,7 @@ void	check_digits(t_data *data)
 	i = 0;
 	while (data->split[i])
 	{
+		ft_printf("++++++++++++++++++++ %s\n", data->split[i]);
 		j = 0;
 		while (data->split[i][j])
 		{

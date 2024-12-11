@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:54:55 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:08:48 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	rotate_rr(t_data *data);
 void	rev_rotate_a(t_data *data);
 
 /* --- parse --- */
-void	parse(char	*str, t_data *data);
+void	parse_str(char	*str, t_data *data);
+void	parse_args(char *str, t_data *data, int i);
 void	check_digits(t_data *data);
 
 /* --- ft_utils --- */
