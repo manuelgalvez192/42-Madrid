@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:05:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/25 20:16:28 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:56:21 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,3 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
-
-/*int	main(void)
-{
-	char c[8] = "aaaaaaa";
-	char q[5] = "dddd";
-	ft_memmove(c, q, 3);
-	printf("%s \n", c);
-	return (0);
-}*/

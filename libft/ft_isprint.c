@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 20:40:05 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/20 20:16:00 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:56:00 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,3 @@ int	ft_isprint(int c)
 		return (1);
 	return (0);
 }
-
-/*int	main(void)
-{
-	char c = 'a';
-	printf("%d \n", ft_isprint(c));
-	return (0);
-}*/

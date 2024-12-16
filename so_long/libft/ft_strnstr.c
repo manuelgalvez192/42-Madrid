@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:04:37 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/25 20:03:55 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:00:06 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (0);
 }
-
-/*int	main(void)
-{
-	char *c = "abcdefgh";
-	char *q = "def";
-	printf("%s \n", ft_strnstr(c, q, 5));
-	printf("%s \n", strnstr(c, q, 5));
-	return (0);
-}*/

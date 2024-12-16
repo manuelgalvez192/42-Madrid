@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 19:47:09 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/25 20:09:19 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:58:49 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,3 @@ int	ft_atoi(const char *str)
 	}
 	return (total * sing);
 }
-
-/*int	main(void)
-{
-	char *c = "2134123";
-	printf("%d \n", ft_atoi(c));
-	return (0);
-}*/

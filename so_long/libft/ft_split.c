@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 18:18:32 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/02/13 21:06:54 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:59:41 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,3 @@ char	**ft_split(char const *s, char c)
 	arr[i] = NULL;
 	return (arr);
 }
-
-/*
-int main() {
-    char *splitme = "Tripouille";
-    char **tab = ft_split(splitme, ' ');
-    // Imprimir el resultado
-    if (tab != NULL) {
-        for (int i = 0; tab[i] != NULL; i++) {
-            printf("Word %d: %s\n", i + 1, tab[i]);
-            free(tab[i]); // Liberar cada cadena asignada
-        }
-        free(tab); // Liberar el array de punteros
-    } else {
-        printf("Error: ft_split returned NULL\n");
-    }
-    return 0;
-}*/

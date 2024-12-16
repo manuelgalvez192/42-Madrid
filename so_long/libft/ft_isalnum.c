@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 20:26:24 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/20 20:15:41 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:58:57 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,3 @@ int	ft_isalnum(int c)
 		return (1);
 	return (0);
 }
-
-/*int	main(void)
-{
-	char c = '1';
-	printf("%d \n", ft_isnum(c));
-	return (0);
-}*/

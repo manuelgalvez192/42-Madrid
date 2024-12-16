@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 20:05:43 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/20 21:03:12 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:00:08 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,3 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)s);
 	return ((char *)strlast);
 }
-
-/*int	main(void)
-{
-	char *c = "abcdefghcxyz";
-	char *q = "abcdefghcxyz";
-	printf("%s \n", ft_strrchr(c, 'c'));
-	printf("%s \n", strrchr(q, 'c'));
-	return (0);
-}*/

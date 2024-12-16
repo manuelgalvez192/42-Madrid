@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:39:37 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/24 18:02:28 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:56:46 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,3 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	}
 	return (srclen);
 }
-
-/*int	main(void)
-{
-	char c[5] = "aaaa";
-	char q[8] = "bbbbbbb";
-	ft_strlcpy(q, c, 3);
-	printf("%s \n", q);
-	return (0);
-}*/
