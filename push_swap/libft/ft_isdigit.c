@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:08:05 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/20 20:14:20 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:41:31 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,3 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-
-/*int	main(void)
-{
-	char c = '1';
-	printf("%d \n", ft_isdigit(c));
-	return (0);
-}*/

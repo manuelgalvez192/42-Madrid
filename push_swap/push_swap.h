@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/16 18:19:33 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:37:26 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ void	rev_rotate_a(t_data *data);
 /* --- parse --- */
 void	parse_str(char	*str, t_data *data);
 void	parse_args(char *str, t_data *data, int i);
-void	call_checkers(t_data *data);
+
+/* --- checker --- */
+void	call_check_fill(t_data *data);
 void	check_digits(t_data *data);
+void	check_repeated(t_data *data);
 
 /* --- ft_utils --- */
 int		ft_ps_atoi(const char *str, t_data *data);

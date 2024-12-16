@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 20:32:36 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/20 20:15:50 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:41:26 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,3 @@ int	ft_isascii(int c)
 		return (1);
 	return (0);
 }
-
-/*int	main(void)
-{
-	char c = 'a';
-	printf("%d \n", ft_isascii(c));
-	return (0);
-}*/

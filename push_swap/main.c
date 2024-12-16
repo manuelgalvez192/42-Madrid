@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/16 18:27:47 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:35:05 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 			parse_args(argv[i], data, i - 1);
 			i++;
 		}
-		call_checkers(data);
+		call_check_fill(data);
 	}
 	print_node(data->a);
 	return 0;

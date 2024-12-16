@@ -22,6 +22,7 @@ SRCS = main.c \
 	   rotate.c \
 	   rev_rotate.c \
 	   parse.c \
+	   checker.c \
 	   error.c \
 	   ft_utils.c \
 	   list_utils.c

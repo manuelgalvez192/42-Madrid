@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 19:22:29 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/01/19 20:01:34 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:42:48 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	dst[dstlen] = '\0';
 	return (len);
 }
-
-/*int	main(void)
-{
-	char c[6] = "aaaa";
-	char q[8] = "bbbbbb";
-	printf("%zu \n", strlcat(q, c, 8));	
-	printf("%s \n", q);
-	return (0);
-}*/
