@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 19:02:25 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:27:47 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ int	main(int argc, char **argv)
 		parse_str(argv[1], data);
 	else
 	{
+		data->split = malloc(sizeof(char *) * (argc));
 		while (i < argc)
 		{
-			data->split = malloc(sizeof(char *) * (argc - 1));
 			parse_args(argv[i], data, i - 1);
 			i++;
 		}
+		call_checkers(data);
 	}
 	print_node(data->a);
 	return 0;
