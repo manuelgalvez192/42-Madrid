@@ -6,19 +6,17 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/16 18:35:05 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:05:45 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_node(t_node *node)
-{
-	while (node)
-	{
-		printf("%d\n", node->value);
-		node = node->next;
-	}
+void print_stack_with_indices(t_node *stack) {
+    while (stack) {
+        printf("Value: %d, Index: %d\n", stack->value, stack->index);
+        stack = stack->next;
+    }
 }
 
 int	main(int argc, char **argv)
@@ -45,6 +43,7 @@ int	main(int argc, char **argv)
 		}
 		call_check_fill(data);
 	}
-	print_node(data->a);
+	calculate_index(data);
+	print_stack_with_indices(data->a);
 	return 0;
 }

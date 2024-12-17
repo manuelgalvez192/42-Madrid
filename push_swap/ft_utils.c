@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:34:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:40:49 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:24:02 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	ft_ps_atoi(const char *str, t_data *data)
 	while (str[pos] >= '0' && str[pos] <= '9')
 	{
 		total = total * 10 + (str[pos] - '0');
-		if ((sign == 1 && total > INT_MAX) || (sign == -1 && -total < INT_MIN))
-            error(data);
+		if ((total > INT_MAX) || ((total * -1) < INT_MIN))
+			error(data);
 		pos++;
 	}
 	return (total * sign);

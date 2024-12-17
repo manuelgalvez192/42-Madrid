@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/16 18:37:26 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:02:52 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@
 
 typedef struct s_node {
 	int				value;
+	int				index;
 	struct s_node	*next;
 }	t_node;
 
 typedef struct s_data {
 	t_node	*a;
+	int		len_a;
 	t_node	*b;
+	int		len_b;
 	char	**split;
 }	t_data;
 
@@ -62,6 +65,7 @@ int		ft_split_len(char **split);
 /* --- list_utils --- */
 void	fill_node(t_data *data);
 void	add_to_list(t_data *data, int value);
+void	calculate_index(t_data *data);
 
 /* --- error --- */
 void	error(t_data *data);

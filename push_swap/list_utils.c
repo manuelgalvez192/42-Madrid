@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:46:28 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/16 18:32:36 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:11:53 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,51 @@ void	add_to_list(t_data *data, int value)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
+	}
+}
+
+void	calculate_length(t_data *data)
+{
+	t_node	*current;
+	int		len_a;
+	int		len_b;
+
+	len_a = 0;
+	len_b = 0;
+	current = data->a;
+	while (current)
+	{
+		len_a++;
+		current = current->next;
+	}
+	current = data->b;
+	while (current)
+	{
+		len_b++;
+		current = current->next;
+	}
+	data->len_a = len_a;
+	data->len_b = len_b;
+}
+
+void	calculate_index(t_data *data)
+{
+	t_node	*current;
+	t_node	*comparator;
+	int		index;
+
+	current = data->a;
+	while (current)
+	{
+		index = 0;
+		comparator = data->a;
+		while (comparator)
+		{
+			if (current->value > comparator->value)
+				index++;
+			comparator = comparator->next;
+		}
+		current->index = index + 1;
+		current = current->next;
 	}
 }
