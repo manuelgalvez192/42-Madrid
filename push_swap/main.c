@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/17 18:05:45 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:57:24 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	main(int argc, char **argv)
 		}
 		call_check_fill(data);
 	}
+	if (is_sorted(data))
+		return 0;
 	calculate_index(data);
 	print_stack_with_indices(data->a);
 	return 0;

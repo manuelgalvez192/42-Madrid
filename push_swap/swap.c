@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:50:22 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:39:01 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:03:47 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	swap_a(t_data *data)
 {
 	t_node	*tmp;
 
+	if (data->len_a < 2)
+		return ;
 	if (data->a && data->a->next)
 	{
 		tmp = data->a->next;
@@ -30,6 +32,8 @@ void	swap_b(t_data *data)
 {
 	t_node	*tmp;
 
+	if (data->len_b < 2)
+		return ;
 	if (data->b && data->b->next)
 	{
 		tmp = data->b->next;

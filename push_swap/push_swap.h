@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/17 19:02:52 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:35:08 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+# include <stdbool.h>
 
 typedef struct s_node {
 	int				value;
@@ -66,6 +67,16 @@ int		ft_split_len(char **split);
 void	fill_node(t_data *data);
 void	add_to_list(t_data *data, int value);
 void	calculate_index(t_data *data);
+
+/* --- algorithm --- */
+void	start_algo(t_data *data);
+bool	is_sorted(t_data *data);
+
+/* --- sort --- */
+void	sort_2(t_data *data);
+void	sort_3(t_data *data);
+void	sort_4(t_data *data);
+void	sort_5(t_data *data);
 
 /* --- error --- */
 void	error(t_data *data);
