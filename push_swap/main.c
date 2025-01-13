@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/18 16:57:24 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 02:30:53 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	main(int argc, char **argv)
 	if (is_sorted(data))
 		return 0;
 	calculate_index(data);
+	calculate_length(data);
+	start_algo(data);
+	ft_printf("numeros en a\n");
 	print_stack_with_indices(data->a);
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:50:29 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:37:46 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/13 02:42:30 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void push_a(t_data *data)
     data->b = data->b->next;
     temp->next = data->a;
     data->a = temp;
+    data->len_a++;
+    data->len_b--;
     ft_printf("pa\n");
 }
 
@@ -33,5 +35,7 @@ void push_b(t_data *data)
     data->a = data->a->next;
     temp->next = data->b;
     data->b = temp;
+    data->len_a--;
+    data->len_b++;
     ft_printf("pb\n");
 }

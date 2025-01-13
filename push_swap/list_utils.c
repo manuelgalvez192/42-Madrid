@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:46:28 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/17 19:11:53 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:29:01 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,20 @@ void	calculate_index(t_data *data)
 		current->index = index + 1;
 		current = current->next;
 	}
+}
+
+int	get_min(t_node *a)
+{
+	t_node	*tmp;
+	int		min;
+
+	tmp = a;
+	min = tmp->value;
+	while (tmp)
+	{
+		if (tmp->value < min)
+			min = tmp->value;
+		tmp = tmp->next;
+	}
+	return (min);
 }

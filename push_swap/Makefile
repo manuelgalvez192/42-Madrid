@@ -25,7 +25,10 @@ SRCS = main.c \
 	   checker.c \
 	   error.c \
 	   ft_utils.c \
-	   list_utils.c
+	   math_utils.c \
+	   list_utils.c \
+	   algorithm.c \
+	   sort.c \
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)
