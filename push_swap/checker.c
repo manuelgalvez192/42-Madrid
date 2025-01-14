@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:34:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/16 18:39:54 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:49:52 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	check_digits(t_data *data)
 		j = 0;
 		while (data->split[i][j])
 		{
-			if ((data->split[i][j] == '-' || data->split[i][j] == '+') && j == 0)
+			if ((data->split[i][j] == '-'
+				|| data->split[i][j] == '+') && j == 0)
 				j++;
 			if (!ft_isdigit(data->split[i][j]))
 				error(data);

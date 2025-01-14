@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:50:16 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/13 02:46:04 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:47:33 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,22 @@ void	rev_rotate_a(t_data *data)
 	ft_printf("rra\n");
 }
 
-void rev_rotate_b(t_data *data)
+void	rev_rotate_b(t_data *data)
 {
-    if (data->b == NULL || data->b->next == NULL)
-        return;
+	t_node	*tmp;
+	t_node	*last;
 
-    t_node *tmp = data->b;
-    t_node *last = data->b;
-
-    while (last->next->next)
-        last = last->next;
-
-    data->b = last->next;
-    data->b->next = tmp;
-    last->next = NULL;
-    ft_printf("rrb\n");
+	tmp = data->b;
+	last = data->b;
+	if (data->b == NULL || data->b->next == NULL)
+		return ;
+	while (last->next->next)
+		last = last->next;
+	data->b = last->next;
+	data->b->next = tmp;
+	last->next = NULL;
+	ft_printf("rrb\n");
 }
-
-
 
 void	rev_rotate_rrr(t_data *data)
 {

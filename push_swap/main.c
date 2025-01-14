@@ -6,18 +6,11 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/13 02:30:53 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:02:33 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void print_stack_with_indices(t_node *stack) {
-    while (stack) {
-        printf("Value: %d, Index: %d\n", stack->value, stack->index);
-        stack = stack->next;
-    }
-}
 
 int	main(int argc, char **argv)
 {
@@ -43,12 +36,17 @@ int	main(int argc, char **argv)
 		}
 		call_check_fill(data);
 	}
+	sorting_functions(data);
+	return (0);
+}
+
+void	sorting_functions(t_data *data)
+{
 	if (is_sorted(data))
-		return 0;
+		return ;
 	calculate_index(data);
 	calculate_length(data);
 	start_algo(data);
-	ft_printf("numeros en a\n");
-	print_stack_with_indices(data->a);
-	return 0;
+	free_split(data->split);
+	free(data);
 }

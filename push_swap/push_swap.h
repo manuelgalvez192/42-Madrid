@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/13 02:46:10 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:45:29 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,24 @@
 # include <limits.h>
 # include <stdbool.h>
 
-typedef struct s_node {
+typedef struct s_node
+{
 	int				value;
 	int				index;
 	struct s_node	*next;
 }	t_node;
 
-typedef struct s_data {
+typedef struct s_data
+{
 	t_node	*a;
 	int		len_a;
 	t_node	*b;
 	int		len_b;
 	char	**split;
 }	t_data;
+
+/* --- main --- */
+void	sorting_functions(t_data *data);
 
 /* --- swap functions --- */
 void	swap_a(t_data *data);
@@ -79,7 +84,8 @@ int		get_min(t_node *a);
 /* --- algorithm --- */
 void	start_algo(t_data *data);
 void	k_sort(t_data *data);
-void	move_highest_to_top(t_data *data);
+void	check_highest(t_data *data);
+void	move_highest_to_top(t_data *data, int max_position);
 bool	is_sorted(t_data *data);
 
 /* --- sort --- */
@@ -91,7 +97,5 @@ void	sort_5(t_data *data);
 /* --- error --- */
 void	error(t_data *data);
 void	free_split(char **split);
-
-void print_stack_with_indices(t_node *stack);
 
 #endif
