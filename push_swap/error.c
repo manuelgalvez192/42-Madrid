@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:29:40 by mgalvez-          #+#    #+#             */
-/*   Updated: 2024/12/11 17:44:25 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:18:07 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,16 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+void free_list(t_node *list)
+{
+    t_node *temp;
+
+    while (list)
+    {
+        temp = list;
+        list = list->next;
+        free(temp);
+    }
 }

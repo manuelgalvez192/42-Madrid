@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/14 17:02:33 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:17:35 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	int		i;
 	t_data	*data;
-
 	i = 1;
 	data = malloc(sizeof(t_data));
 	data->a = NULL;
@@ -37,16 +36,18 @@ int	main(int argc, char **argv)
 		call_check_fill(data);
 	}
 	sorting_functions(data);
-	return (0);
+	return 0;
 }
 
 void	sorting_functions(t_data *data)
 {
 	if (is_sorted(data))
-		return ;
+	 	return ;
 	calculate_index(data);
 	calculate_length(data);
 	start_algo(data);
 	free_split(data->split);
+	free_list(data->a);
+	free_list(data->b);
 	free(data);
 }

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/14 16:45:29 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:17:02 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	sort_5(t_data *data);
 /* --- error --- */
 void	error(t_data *data);
 void	free_split(char **split);
+void	free_list(t_node *list);
 
 #endif

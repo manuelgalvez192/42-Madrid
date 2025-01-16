@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:46:28 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/14 17:02:03 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:12:04 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	add_to_list(t_data *data, int value)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
-	free(new);
+	
 }
 
 void	calculate_length(t_data *data)
