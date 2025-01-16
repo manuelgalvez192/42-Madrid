@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:14:47 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/14 15:50:45 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:32:39 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,9 @@ bool	is_sorted(t_data *data)
 			return (false);
 		tmp = tmp->next;
 	}
+	free_split(data->split);
+	free_list(data->a);
+	free_list(data->b);
+	free(data);
 	return (true);
 }

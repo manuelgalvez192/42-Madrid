@@ -10,7 +10,7 @@ CC = cc
 ARFLAGS = -rc
 
 # The flags to use with the C compiler
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 # The command to remove files
 RM = rm -f
