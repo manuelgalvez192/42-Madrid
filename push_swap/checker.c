@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:34:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/14 16:49:52 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/16 22:43:01 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ void	check_digits(t_data *data)
 
 void	check_repeated(t_data *data)
 {
-	int	i;
-	int	j;
+	t_node	*current;
+	t_node	*checker;
 
-	i = 0;
-	while (data->split[i])
+	current = data->a;
+	while (current != NULL)
 	{
-		j = i + 1;
-		while (data->split[j])
+		checker = current->next;
+		while (checker != NULL)
 		{
-			if (ft_strncmp(data->split[i], data->split[j]) == 0)
+			if (current->value == checker->value)
 				error(data);
-			j++;
+			checker = checker->next;
 		}
-		i++;
+		current = current->next;
 	}
 }

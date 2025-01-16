@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/16 13:17:35 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/16 23:11:55 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ int	main(int argc, char **argv)
 	data->b = NULL;
 	data->split = NULL;
 	if (argc < 2)
-		error(NULL);
+		return (free(data), 0);	
 	if (argc == 2)
 		parse_str(argv[1], data);
 	else
 	{
-		data->split = malloc(sizeof(char *) * (argc));
+		data->split = ft_calloc(argc, sizeof(char *));
+		if (!data->split)
+			error(NULL);
 		while (i < argc)
 		{
 			parse_args(argv[i], data, i - 1);
@@ -36,7 +38,7 @@ int	main(int argc, char **argv)
 		call_check_fill(data);
 	}
 	sorting_functions(data);
-	return 0;
+	return (0);
 }
 
 void	sorting_functions(t_data *data)
