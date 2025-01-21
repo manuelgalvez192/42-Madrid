@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:29:40 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/16 23:13:05 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:33:50 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	error(t_data *data)
 	if (data->b)
 		free_list(data->b);
 	free(data);
-	ft_printf("Error\n");
+	ft_putendl_fd("Error", 2);
 	exit(1);
 }
 
