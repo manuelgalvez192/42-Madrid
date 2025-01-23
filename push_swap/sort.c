@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:30:27 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/23 21:20:16 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:42:38 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,28 @@ void	sort_3(t_data *data)
 		rev_rotate_a(data);
 }
 
+void	sort_4(t_data *data)
+{
+	move_min_to_top(data);
+	push_b(data);
+	sort_3(data);
+	push_a(data);
+}
+
+void	sort_5(t_data *data)
+{
+	move_min_to_top(data);
+	push_b(data);
+	sort_4(data);
+	push_a(data);
+}
+
 void	move_min_to_top(t_data *data)
 {
+	t_node *current = data->a;
 	int	min;
 	int	pos;
 	int	i;
-	t_node *current = data->a;
 
 	min = get_min(data->a);
 	pos = 0;
@@ -72,26 +88,3 @@ void	move_min_to_top(t_data *data)
 			rev_rotate_a(data);
 	}
 }
-
-void	sort_4(t_data *data)
-{
-	while (data->len_a > 3)
-	{
-		move_min_to_top(data);
-		push_b(data);
-	}
-	sort_3(data);
-	push_a(data);
-}
-
-void	sort_5(t_data *data)
-{
-	while (data->len_a > 4)
-	{
-		move_min_to_top(data);
-		push_b(data);
-	}
-	sort_4(data);
-	push_a(data);
-}
-

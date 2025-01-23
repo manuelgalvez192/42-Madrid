@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:48 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/16 13:17:02 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:39:34 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	sort_2(t_data *data);
 void	sort_3(t_data *data);
 void	sort_4(t_data *data);
 void	sort_5(t_data *data);
+void	move_min_to_top(t_data *data);
 
 /* --- error --- */
 void	error(t_data *data);
