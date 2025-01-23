@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:30:27 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/23 17:24:11 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:20:16 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,8 @@ void	move_min_to_top(t_data *data)
 		i++;
 	}
 	if (pos <= data->len_a / 2)
-	{
 		while (pos--)
 			rotate_a(data);
-	}
 	else
 	{
 		pos = data->len_a - pos;
