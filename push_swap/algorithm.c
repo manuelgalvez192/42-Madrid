@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:14:47 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/16 22:36:43 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:54:48 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	start_algo(t_data *data)
 		sort_4(data);
 	else if (data->len_a == 5)
 		sort_5(data);
-	else
+	else	
 		k_sort(data);
 }
 

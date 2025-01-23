@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:45:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/16 23:11:55 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:38:46 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	int		i;
 	t_data	*data;
 	i = 1;
+	
 	data = malloc(sizeof(t_data));
 	data->a = NULL;
 	data->b = NULL;
