@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 19:14:47 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/01/23 16:54:48 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:24:16 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,21 @@ bool	is_sorted(t_data *data)
 {
 	t_node	*tmp;
 
+	if (!data->a)
+	{
+		free_split(data->split);
+		free_list(data->a);
+		free_list(data->b);
+		free(data);
+		return (true);
+	}
 	tmp = data->a;
 	while (tmp->next)
 	{
 		if (tmp->value > tmp->next->value)
 			return (false);
 		tmp = tmp->next;
-	}
+	}	
 	free_split(data->split);
 	free_list(data->a);
 	free_list(data->b);
