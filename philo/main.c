@@ -12,21 +12,30 @@
 
 #include "philosopher.h"
 
-int	main(int argc, char **argv)
+int main(int argc, const char **argv)
 {
-	t_data_philo	*data;
+	t_data	data;
 
-	if (argc != 5 && argc != 6)
-	{
-		ft_printf("Error: wrong number of arguments\n");
-		return (1);
-	}
+	if (argc < 5 || argc > 6)
+		return (0);
+	fill_data(argv, &data);
+
+	return (0);
+}
+
+void fill_data(const char **argv, t_data *data)
+{
 	data->num_of_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	if (argc = 6)
+	if (argv[5])
 		data->must_eat = ft_atoi(argv[5]);
-	set_up_simulation(data);
-	start_simulation(data);
+	int i = 0;
+	while (i < ft_atoi(argv[1]))
+	{
+		data->philo->id = i;
+		i++;
+	}
+
 }
