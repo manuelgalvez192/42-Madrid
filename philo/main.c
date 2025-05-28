@@ -14,28 +14,18 @@
 
 int main(int argc, const char **argv)
 {
-	t_data	data;
+	t_data	*data;
 
 	if (argc < 5 || argc > 6)
 		return (0);
-	fill_data(argv, &data);
-
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		return (ft_putstr_fd("Error allocating memory for data", 2), 1);
+	if (!check_valid_input(data, argv))
+		return (1);
+	if (!init_data(data, argv))
+		return (1);
+	free(data);
 	return (0);
 }
 
-void fill_data(const char **argv, t_data *data)
-{
-	data->num_of_philo = ft_atoi(argv[1]);
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
-	if (argv[5])
-		data->must_eat = ft_atoi(argv[5]);
-	int i = 0;
-	while (i < ft_atoi(argv[1]))
-	{
-		data->philo->id = i;
-		i++;
-	}
-
-}

@@ -14,14 +14,5 @@
 
 void	set_up_simulation(t_data_philo *data)
 {
-	int	count;
-
-	data->philo = malloc(sizeof(int) * data->num_of_philo);
-	data->forks = malloc(sizeof(int) * data->num_of_philo);
-	count = 1;
-	while (count <= data->num_of_philo)
-	{
-		data->philo[count] = count;
-		data->forks[count] = 1;	
-	}
+	
 }

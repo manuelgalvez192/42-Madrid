@@ -19,28 +19,44 @@
 #include <pthread.h>
 #include <stdbool.h>
 
-typedef struct s_philosopher
+typedef struct s_fork
 {
-	int		id;
-	bool	alive;
-	bool	eating;
-	bool	sleeping;
-	bool	thinking;
-	struct s_philosopher	*left;
-}	t_philosopher;
+	int				id;
+	pthread_mutex_t	mutex;
+}	t_fork;
+
+typedef struct s_philo
+{
+	int			id;
+	int			meals_counter;
+	bool		full;
+	long		last_meal_time;
+	t_fork		*first_fork;
+	t_fork		*second_fork;
+	pthread_t	thread_id;
+}	t_philo;
 
 typedef struct s_data
 {
-	int	num_of_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	must_eat;
-	t_philosopher	*philo;
-	int	*forks;
+	int		num_of_philo;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		must_eat;
+	long	start_simulation;
+	bool	end_simulation;
+	t_philo	*philos;
+	t_fork	*forks;
 }	t_data;
 
 void fill_data(const char **argv, t_data *data);
+
+/* --- safe_functions --- */
+void	*safe_calloc(size_t bytes);
+
+/* --- parse --- */
+void	check_valid_input(t_data *data, const char **argv);
+
 
 /* --- set_up_simulation --- */
 

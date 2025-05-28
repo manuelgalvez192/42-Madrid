@@ -16,7 +16,8 @@ CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 RM = rm -f
 
 # A list of all .c files in the current directory
-SRCS = main.c \
+SRCS =	main.c \
+		parse.c
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)
