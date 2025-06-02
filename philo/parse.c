@@ -12,14 +12,34 @@
 
 #include "philosopher.h"
 
-bool	check_valid_input(t_data *data, const char **argv)
+bool	is_numeric(const char *str)
 {
-	int argc;
+	int i = 0;
 
-	argc = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+
+	if (!str[i])
+		return (false);
+
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+
+bool	check_valid_input(const char **argv)
+{
+	int i;
+
+	i = 1;
 	while (argv[i])
 	{
-		if (!ft_isdigit(argv[i]))
+		if (!is_numeric(argv[i]))
 		{
 			ft_putstr_fd("Error: Arguments must be numeric.\n", 2);
 			return (false);
@@ -48,9 +68,11 @@ void	init_philos(t_data *data)
 	{
 		data->philos[i].id = i + 1;
 		data->philos[i].meals_counter = 0;
+		data->philos[i].alive = true;
 		data->philos[i].full = false;
 		data->philos[i].second_fork = &data->forks[i];
 		data->philos[i].first_fork = &data->forks[(i + 1) % data->num_of_philo];
+		data->philos[i].data = data;
 		if (data->num_of_philo % 2 == 0)
 		{
 			data->philos[i].first_fork = &data->forks[i];
@@ -65,7 +87,7 @@ bool	init_data(t_data *data, const char **argv)
 	int	i;
 	int	a;
 
-	i = 0;
+	i = 1;
 	a = -1;
 	data->num_of_philo = ft_atoi(argv[i++]);
 	data->time_to_die = ft_atoi(argv[i++]);
@@ -77,8 +99,10 @@ bool	init_data(t_data *data, const char **argv)
 		data->must_eat = -1;
 	data->start_simulation = 0;
 	data->end_simulation = false;
-	data->philos = ft_calloc(data->num_of_philo * sizeof(t_philo));
-	data->forks = ft_calloc(data->num_of_philo * sizeof(t_fork));
+	data->philos = ft_calloc(data->num_of_philo, sizeof(t_philo));
+	data->forks = ft_calloc(data->num_of_philo, sizeof(t_fork));
+	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_init(&data->end_simulation_mutex, NULL);
 	if (!data->philos || !data->forks)
 		return (ft_putstr_fd("Error allocating memory.\n", 2),false);
 	while (++a < data->num_of_philo)
@@ -87,4 +111,5 @@ bool	init_data(t_data *data, const char **argv)
 		pthread_mutex_init(&data->forks[a].mutex, NULL);
 	}
 	init_philos(data);
+	return (true);
 }

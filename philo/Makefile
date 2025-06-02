@@ -10,14 +10,17 @@ CC = cc
 ARFLAGS = -rc
 
 # The flags to use with the C compiler
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 # The command to remove files
 RM = rm -f
 
 # A list of all .c files in the current directory
-SRCS =	main.c \
-		parse.c
+SRCS =	main.c 				\
+		parse.c 			\
+		philo_controller.c 	\
+		philo_tasks.c		\
+		start_simulation.c 	\
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)
