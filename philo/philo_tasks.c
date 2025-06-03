@@ -37,10 +37,10 @@ void	eat(t_philo *philo)
 
 	if (is_simulation_over(data) || !philo->alive)
 		return;
-	philo->last_meal_time = get_time();
 	print_status(philo, "is eating");
 	usleep(data->time_to_eat * 1000);
 	philo->meals_counter++;
+	philo->last_meal_time = get_time();
 
 	if (philo->meals_counter == data->must_eat)
 	{
@@ -53,24 +53,22 @@ void	eat(t_philo *philo)
 			pthread_mutex_unlock(&data->end_simulation_mutex);
 		}
 	}
+	
 }
 
-void	*release_forks(t_philo *philo)
+void	release_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(&philo->first_fork->mutex);
 	pthread_mutex_unlock(&philo->second_fork->mutex);
-	return (NULL);
 }
 
-void	*sleep_philo(t_philo *philo)
+void	sleep_philo(t_philo *philo)
 {
 	print_status(philo, "is sleeping");
 	usleep(philo->data->time_to_sleep * 1000);
-	return (NULL);
 }
 
-void	*think(t_philo *philo)
+void	think(t_philo *philo)
 {
 	print_status(philo, "is thinking");
-	return (NULL);
 }

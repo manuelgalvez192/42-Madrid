@@ -62,9 +62,9 @@ void	print_status(t_philo *philo, const char *msg);
 /* --- philo_tasks --- */
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
-void	*release_forks(t_philo *philo);
-void	*sleep_philo(t_philo *philo);
-void	*think(t_philo *philo);
+void	release_forks(t_philo *philo);
+void	sleep_philo(t_philo *philo);
+void	think(t_philo *philo);
 
 /* --- parse --- */
 bool	check_valid_input(const char **argv);

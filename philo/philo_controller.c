@@ -29,8 +29,9 @@ void	print_status(t_philo *philo, const char *message)
 long get_time(void)
 {
 	struct timeval tv;
+
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000L + tv.tv_usec / 1000L);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 
@@ -57,8 +58,8 @@ void	*monitor(void *arg)
 		{
 			if ((get_time() - data->philos[i].last_meal_time) > data->time_to_die)
 			{
-				print_status(&data->philos[i], "died");
 				pthread_mutex_lock(&data->end_simulation_mutex);
+				print_status(&data->philos[i], "died");
 				data->end_simulation = true;
 				pthread_mutex_unlock(&data->end_simulation_mutex);
 				data->philos[i].alive = false;
