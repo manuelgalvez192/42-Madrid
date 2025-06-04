@@ -73,11 +73,15 @@ void	init_philos(t_data *data)
 		data->philos[i].second_fork = &data->forks[i];
 		data->philos[i].first_fork = &data->forks[(i + 1) % data->num_of_philo];
 		data->philos[i].data = data;
-		if (data->num_of_philo % 2 == 0)
-		{
-			data->philos[i].first_fork = &data->forks[i];
-			data->philos[i].second_fork = &data->forks[(i + 1) % data->num_of_philo];
-		}
+		 if (i % 2 == 0) {
+            data->philos[i].first_fork = &data->forks[i];
+            data->philos[i].second_fork = &data->forks[(i + 1) % data->num_of_philo];
+        } else {
+            data->philos[i].first_fork = &data->forks[(i + 1) % data->num_of_philo];
+            data->philos[i].second_fork = &data->forks[i];
+        }
+        
+        pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
 		i++;
 	}
 }
@@ -101,6 +105,8 @@ bool	init_data(t_data *data, const char **argv)
 	data->end_simulation = false;
 	data->philos = ft_calloc(data->num_of_philo, sizeof(t_philo));
 	data->forks = ft_calloc(data->num_of_philo, sizeof(t_fork));
+	if (!data->philos || !data->forks)
+		return (ft_putstr_fd("Error allocating memory.\n", 2), false);
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->end_simulation_mutex, NULL);
 	if (!data->philos || !data->forks)

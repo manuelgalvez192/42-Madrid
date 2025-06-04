@@ -34,7 +34,6 @@ long get_time(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-
 bool	is_simulation_over(t_data *data)
 {
 	bool result;
@@ -67,5 +66,6 @@ void	*monitor(void *arg)
 			}
 		}
 	}
+	//usleep(100);
 	return (NULL);
 }

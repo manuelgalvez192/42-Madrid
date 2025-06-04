@@ -39,6 +39,7 @@ typedef struct s_philo
 	t_fork		*first_fork;
 	t_fork		*second_fork;
 	pthread_t	thread_id;
+	pthread_mutex_t	meal_mutex;
 	t_data		*data;
 }	t_philo;
 
@@ -74,6 +75,7 @@ bool	init_data(t_data *data, const char **argv);
 /* --- philo_controller --- */
 void	print_status(t_philo *philo, const char *msg);
 long	get_time(void);
+void	smart_sleep(long time_ms, t_data *data);
 bool	is_simulation_over(t_data *data);
 void	*monitor(void *arg);
 

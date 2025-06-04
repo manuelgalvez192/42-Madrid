@@ -21,11 +21,6 @@ void	take_forks(t_philo *philo)
 		return;
 	pthread_mutex_lock(&philo->first_fork->mutex);
 	print_status(philo, "has taken a fork");
-	if (is_simulation_over(data) || !philo->alive)
-	{
-		pthread_mutex_unlock(&philo->first_fork->mutex);
-		return;
-	}
 	pthread_mutex_lock(&philo->second_fork->mutex);
 	print_status(philo, "has taken a fork");
 }
@@ -38,10 +33,10 @@ void	eat(t_philo *philo)
 	if (is_simulation_over(data) || !philo->alive)
 		return;
 	print_status(philo, "is eating");
+	pthread_mutex_lock(&philo->meal_mutex);
+    philo->last_meal_time = get_time();
+    pthread_mutex_unlock(&philo->meal_mutex);
 	usleep(data->time_to_eat * 1000);
-	philo->meals_counter++;
-	philo->last_meal_time = get_time();
-
 	if (philo->meals_counter == data->must_eat)
 	{
 		print_status(philo, "has eaten enough");
@@ -64,8 +59,8 @@ void	release_forks(t_philo *philo)
 
 void	sleep_philo(t_philo *philo)
 {
-	print_status(philo, "is sleeping");
-	usleep(philo->data->time_to_sleep * 1000);
+    print_status(philo, "is sleeping");
+    usleep(philo->data->time_to_sleep * 1000);
 }
 
 void	think(t_philo *philo)
