@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:37:49 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 18:44:13 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:07:53 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ void	take_forks(t_philo *philo)
 	print_status(philo, "has taken a fork");
 }
 
-
-
 void	eat(t_philo *philo)
 {
-    t_data *data = philo->data;
-
+    t_data *data;
+    
+    data = philo->data;
     philo->meals_counter++;
     pthread_mutex_lock(&philo->meal_mutex);
     philo->last_meal_time = get_time();

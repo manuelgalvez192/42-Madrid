@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:52:12 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 18:49:07 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:10:10 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ bool	all_philos_full(t_data *data)
 		i++;
 	}
 	return (true);
+}
+
+bool	is_simulation_over(t_data *data)
+{
+	bool result;
+
+	pthread_mutex_lock(&data->end_simulation_mutex);
+	result = data->end_simulation;
+	pthread_mutex_unlock(&data->end_simulation_mutex);
+	return (result);
 }
 
 void *simulation(void *arg)

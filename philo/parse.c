@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:26:41 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 17:02:50 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:07:05 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 bool	is_numeric(const char *str)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 
@@ -86,13 +87,8 @@ void	init_philos(t_data *data)
 	}
 }
 
-bool	init_data(t_data *data, const char **argv)
+void assign_data(t_data *data, const char **argv, int i)
 {
-	int	i;
-	int	a;
-
-	i = 1;
-	a = -1;
 	data->num_of_philo = ft_atoi(argv[i++]);
 	data->time_to_die = ft_atoi(argv[i++]);
 	data->time_to_eat = ft_atoi(argv[i++]);
@@ -106,7 +102,17 @@ bool	init_data(t_data *data, const char **argv)
 	data->philos = ft_calloc(data->num_of_philo, sizeof(t_philo));
 	data->forks = ft_calloc(data->num_of_philo, sizeof(t_fork));
 	if (!data->philos || !data->forks)
-		return (ft_putstr_fd("Error allocating memory.\n", 2), false);
+		return (ft_putstr_fd("Error allocating memory.\n", 2), false);	
+}
+
+bool	init_data(t_data *data, const char **argv)
+{
+	int	i;
+	int	a;
+
+	i = 1;
+	a = -1;
+	assign_data(data, argv, i);
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->end_simulation_mutex, NULL);
 	if (!data->philos || !data->forks)
