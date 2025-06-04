@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:58:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/03/04 12:30:56 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:41:05 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	init_data(t_data *data, const char **argv);
 /* --- philo_controller --- */
 void	print_status(t_philo *philo, const char *msg);
 long	get_time(void);
-void	smart_sleep(long time_ms, t_data *data);
+void	smart_sleep(long sleep_time);
 bool	is_simulation_over(t_data *data);
 void	*monitor(void *arg);
 

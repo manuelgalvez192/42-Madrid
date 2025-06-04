@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:52:12 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/01 00:52:12 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:46:23 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ void	start_simulation(t_data *data)
 	{
 		data->start_simulation = get_time();
 		data->philos[0].last_meal_time = data->start_simulation;
+		pthread_create(&monitor_thread, NULL, &monitor, data);
 		pthread_create(&data->philos[0].thread_id, NULL, &simulation, &data->philos[0]);
 		pthread_join(data->philos[0].thread_id, NULL);
+		pthread_join(monitor_thread, NULL);
 	}
 	else
 	{

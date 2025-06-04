@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:41:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/01 00:41:04 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 16:42:27 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ long get_time(void)
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	smart_sleep(long sleep_time)
+{
+	long	start_time;
+
+	start_time = get_time();
+	while (get_time() - start_time < sleep_time)
+	{
+		usleep(100);
+	}
 }
 
 bool	is_simulation_over(t_data *data)
@@ -66,6 +77,6 @@ void	*monitor(void *arg)
 			}
 		}
 	}
-	//usleep(100);
+	usleep(100);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:26:41 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/05/28 20:26:41 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:02:50 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,18 @@ void	init_philos(t_data *data)
 		data->philos[i].meals_counter = 0;
 		data->philos[i].alive = true;
 		data->philos[i].full = false;
-		data->philos[i].second_fork = &data->forks[i];
-		data->philos[i].first_fork = &data->forks[(i + 1) % data->num_of_philo];
 		data->philos[i].data = data;
-		if (data->num_of_philo % 2 == 0)
-		{
-			data->philos[i].first_fork = &data->forks[i];
-			data->philos[i].second_fork = &data->forks[(i + 1) % data->num_of_philo];
-		}
 		pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
+		if (data->philos[i].id % 2 == 0)
+		{
+			data->philos[i].first_fork  = &data->forks[data->philos[i].id - 1];
+			data->philos[i].second_fork = &data->forks[(data->philos[i].id) % data->num_of_philo];
+		}
+		else
+		{
+			data->philos[i].first_fork  = &data->forks[(data->philos[i].id) % data->num_of_philo];
+			data->philos[i].second_fork = &data->forks[data->philos[i].id - 1];
+		}
 		i++;
 	}
 }
