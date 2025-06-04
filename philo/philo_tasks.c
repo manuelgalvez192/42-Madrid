@@ -37,6 +37,7 @@ void	eat(t_philo *philo)
     philo->last_meal_time = get_time();
     pthread_mutex_unlock(&philo->meal_mutex);
 	usleep(data->time_to_eat * 1000);
+	philo->meals_counter++;
 	if (philo->meals_counter == data->must_eat)
 	{
 		print_status(philo, "has eaten enough");
