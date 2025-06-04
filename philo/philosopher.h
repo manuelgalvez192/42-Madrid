@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:58:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 16:41:05 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:15:11 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ typedef struct s_data
 
 void	print_status(t_philo *philo, const char *msg);
 
+/* --- parse --- */
+bool	check_valid_input(const char **argv);
+void	init_philos(t_data *data);
+bool	init_data(t_data *data, const char **argv);
+
 /* --- philo_tasks --- */
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	release_forks(t_philo *philo);
 void	sleep_philo(t_philo *philo);
 void	think(t_philo *philo);
-
-/* --- parse --- */
-bool	check_valid_input(const char **argv);
-void	init_philos(t_data *data);
-bool	init_data(t_data *data, const char **argv);
 
 /* --- philo_controller --- */
 void	print_status(t_philo *philo, const char *msg);
@@ -83,5 +83,8 @@ void	*monitor(void *arg);
 bool	all_philos_full(t_data *data);
 void	*simulation(void *arg);
 void	start_simulation(t_data *data);
+
+/* --- cleaner --- */
+void	cleanup(t_data *data);
 
 #endif

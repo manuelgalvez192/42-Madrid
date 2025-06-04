@@ -21,6 +21,7 @@ SRCS =	main.c 				\
 		philo_controller.c 	\
 		philo_tasks.c		\
 		start_simulation.c 	\
+		cleaner.c			\
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:37:49 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 17:49:36 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:44:13 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,12 @@ void	eat(t_philo *philo)
 {
     t_data *data = philo->data;
 
-    // Incremento contador de comidas
     philo->meals_counter++;
-
-    // Bloqueo para actualizar last_meal_time justo al empezar a comer
     pthread_mutex_lock(&philo->meal_mutex);
     philo->last_meal_time = get_time();
     pthread_mutex_unlock(&philo->meal_mutex);
-
-    // Imprimo estado y duermo el tiempo de comer
     print_status(philo, "is eating");
     smart_sleep(data->time_to_eat);
-
-    // Si ya comió la cantidad requerida, marco full y termino si todos están full
     if (philo->meals_counter == data->must_eat)
     {
         print_status(philo, "has eaten enough");

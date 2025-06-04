@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:41:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 17:36:43 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/04 18:34:03 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,11 @@ void	*monitor(void *arg)
 		i = -1;
 		while (++i < data->num_of_philo)
 		{
-			// Si este filósofo ya está marcado como 'full', lo salto.
 			pthread_mutex_lock(&data->philos[i].meal_mutex);
 			bool is_full = data->philos[i].full;
 			pthread_mutex_unlock(&data->philos[i].meal_mutex);
 			if (is_full)
 				continue;
-
-			// Ahora sí: si ha pasado demasiado tiempo desde su última comida, muere.
 			pthread_mutex_lock(&data->philos[i].meal_mutex);
 			long	time_since_last = get_time() - data->philos[i].last_meal_time;
 			pthread_mutex_unlock(&data->philos[i].meal_mutex);
@@ -84,7 +81,6 @@ void	*monitor(void *arg)
 				print_status(&data->philos[i], "died");
 				data->end_simulation = true;
 				pthread_mutex_unlock(&data->end_simulation_mutex);
-
 				pthread_mutex_lock(&data->philos[i].meal_mutex);
 				data->philos[i].alive = false;
 				pthread_mutex_unlock(&data->philos[i].meal_mutex);
