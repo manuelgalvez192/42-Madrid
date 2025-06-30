@@ -20,6 +20,7 @@ SRCS =	main.c 				\
 		philo_tasks.c		\
 		start_simulation.c 	\
 		cleaner.c			\
+		utils.c
 
 # A list of all .o files that correspond to the .c files
 OBJS = $(SRCS:.c=.o)
@@ -29,7 +30,7 @@ all: $(NAME)
 
 # A rule to build the project from the .o files
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<

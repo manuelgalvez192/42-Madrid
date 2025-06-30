@@ -6,21 +6,22 @@
 /*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:58:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 15:40:33 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:38:29 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHER_H
 # define PHILOSOPHER_H
 
-#include <limits.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <stdio.h>
-#include <pthread.h>
-#include <stdbool.h>
+# include <limits.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <stdbool.h>
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
@@ -72,9 +73,9 @@ void	think(t_philo *philo);
 
 /* --- philo_controller --- */
 void	print_status(t_philo *philo, const char *msg);
-long	get_time(void);
+long	ft_get_time(void);
 void	smart_sleep(long sleep_time);
-void	die_check(t_data *data, int i, long time_since_last);
+bool	die_check(t_data *data, int i, long time_since_last);
 void	*monitor(void *arg);
 
 /* --- start_simulation --- */

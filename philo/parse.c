@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:26:41 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 15:40:20 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:49:41 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	check_valid_input(const char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (argv[i])
@@ -31,7 +31,8 @@ bool	check_valid_input(const char **argv)
 		}
 		if (ft_strlen(argv[i]) > 10 || ft_atoi(argv[i]) > INT_MAX)
 		{
-			ft_putstr_fd("Error: Arguments must be within the range of int.\n", 2);
+			ft_putstr_fd("Error: Arguments must be within the range of int.\n",
+				2);
 			return (false);
 		}
 		i++;
@@ -54,19 +55,21 @@ void	init_philos(t_data *data)
 		pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
 		if (data->philos[i].id % 2 == 0)
 		{
-			data->philos[i].first_fork  = &data->forks[data->philos[i].id - 1];
-			data->philos[i].second_fork = &data->forks[(data->philos[i].id) % data->num_of_philo];
+			data->philos[i].first_fork = &data->forks[data->philos[i].id - 1];
+			data->philos[i].second_fork = &data->forks[(data->philos[i].id)
+				% data->num_of_philo];
 		}
 		else
 		{
-			data->philos[i].first_fork  = &data->forks[(data->philos[i].id) % data->num_of_philo];
+			data->philos[i].first_fork = &data->forks[(data->philos[i].id)
+				% data->num_of_philo];
 			data->philos[i].second_fork = &data->forks[data->philos[i].id - 1];
 		}
 		i++;
 	}
 }
 
-bool assign_data(t_data *data, const char **argv, int i)
+bool	assign_data(t_data *data, const char **argv, int i)
 {
 	data->num_of_philo = ft_atoi(argv[i++]);
 	data->time_to_die = ft_atoi(argv[i++]);
@@ -82,7 +85,7 @@ bool assign_data(t_data *data, const char **argv, int i)
 	data->forks = ft_calloc(data->num_of_philo, sizeof(t_fork));
 	if (!data->philos || !data->forks)
 		return (ft_putstr_fd("Error allocating memory.\n", 2), false);
-	return (true);	
+	return (true);
 }
 
 bool	init_data(t_data *data, const char **argv)
@@ -97,7 +100,7 @@ bool	init_data(t_data *data, const char **argv)
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->end_simulation_mutex, NULL);
 	if (!data->philos || !data->forks)
-		return (ft_putstr_fd("Error allocating memory.\n", 2),false);
+		return (ft_putstr_fd("Error allocating memory.\n", 2), false);
 	while (++a < data->num_of_philo)
 	{
 		data->forks[a].id = a;

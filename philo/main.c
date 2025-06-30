@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:50:47 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 18:51:50 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:49:56 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int main(int argc, const char **argv)
+int	main(int argc, const char **argv)
 {
 	t_data	*data;
 
@@ -29,4 +29,3 @@ int main(int argc, const char **argv)
 	cleanup(data);
 	return (0);
 }
-

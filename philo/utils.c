@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 15:28:59 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 15:31:05 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:42:28 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ bool	is_numeric(const char *str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-
 	if (!str[i])
 		return (false);
-
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
