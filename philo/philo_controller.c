@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:41:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 19:10:05 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:25:53 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	print_status(t_philo *philo, const char *message)
 	pthread_mutex_lock(&data->print_mutex);
 	if (!data->end_simulation)
 	{
-		timestamp = get_time() - data->start_simulation;
+		timestamp = ft_get_time() - data->start_simulation;
 		printf("%ld %d %s\n", timestamp, philo->id, message);
 	}
 	pthread_mutex_unlock(&data->print_mutex);
 }
 
-long get_time(void)
+long ft_get_time(void)
 {
 	struct timeval tv;
 
@@ -39,8 +39,8 @@ void	smart_sleep(long sleep_time)
 {
 	long	start_time;
 
-	start_time = get_time();
-	while (get_time() - start_time < sleep_time)
+	start_time = ft_get_time();
+	while (ft_get_time() - start_time < sleep_time)
 	{
 		usleep(100);
 	}

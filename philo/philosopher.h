@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:58:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 19:11:00 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/16 12:26:03 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	think(t_philo *philo);
 
 /* --- philo_controller --- */
 void	print_status(t_philo *philo, const char *msg);
-long	get_time(void);
+long	ft_get_time(void);
 void	smart_sleep(long sleep_time);
 void	die_check(t_data *data, int i, long time_since_last);
 void	*monitor(void *arg);
