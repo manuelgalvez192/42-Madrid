@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:58:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 19:11:00 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:40:33 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHER_H
 # define PHILOSOPHER_H
 
-#include "libft/libft.h"
 #include <limits.h>
 #include <stdlib.h>
 #include <sys/time.h>
@@ -59,10 +58,9 @@ typedef struct s_data
 }	t_data;
 
 /* --- parse --- */
-bool	is_numeric(const char *str);
 bool	check_valid_input(const char **argv);
 void	init_philos(t_data *data);
-void	assign_data(t_data *data, const char **argv, int i);
+bool	assign_data(t_data *data, const char **argv, int i);
 bool	init_data(t_data *data, const char **argv);
 
 /* --- philo_tasks --- */
@@ -87,5 +85,13 @@ void	start_simulation(t_data *data);
 
 /* --- cleaner --- */
 void	cleanup(t_data *data);
+void	ft_putstr_fd(char *s, int fd);
+
+/* --- utils --- */
+bool	is_numeric(const char *str);
+int		ft_isdigit(int c);
+void	*ft_calloc(size_t count, size_t size);
+int		ft_atoi(const char *str);
+size_t	ft_strlen(const char *c);
 
 #endif

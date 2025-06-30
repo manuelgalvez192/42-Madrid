@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_controller.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:41:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 19:10:05 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:52:06 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	die_check(t_data *data, int i, long time_since_last)
 		pthread_mutex_lock(&data->philos[i].meal_mutex);
 		data->philos[i].alive = false;
 		pthread_mutex_unlock(&data->philos[i].meal_mutex);
-		return (NULL);
+		return ;
 	}
 }
 

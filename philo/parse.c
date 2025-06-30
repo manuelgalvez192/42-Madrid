@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:26:41 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/04 19:07:05 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:40:20 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
-
-bool	is_numeric(const char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-
-	if (!str[i])
-		return (false);
-
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
 
 bool	check_valid_input(const char **argv)
 {
@@ -87,7 +66,7 @@ void	init_philos(t_data *data)
 	}
 }
 
-void assign_data(t_data *data, const char **argv, int i)
+bool assign_data(t_data *data, const char **argv, int i)
 {
 	data->num_of_philo = ft_atoi(argv[i++]);
 	data->time_to_die = ft_atoi(argv[i++]);
@@ -102,7 +81,8 @@ void assign_data(t_data *data, const char **argv, int i)
 	data->philos = ft_calloc(data->num_of_philo, sizeof(t_philo));
 	data->forks = ft_calloc(data->num_of_philo, sizeof(t_fork));
 	if (!data->philos || !data->forks)
-		return (ft_putstr_fd("Error allocating memory.\n", 2), false);	
+		return (ft_putstr_fd("Error allocating memory.\n", 2), false);
+	return (true);	
 }
 
 bool	init_data(t_data *data, const char **argv)
@@ -112,7 +92,8 @@ bool	init_data(t_data *data, const char **argv)
 
 	i = 1;
 	a = -1;
-	assign_data(data, argv, i);
+	if (!assign_data(data, argv, i))
+		return (false);
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->end_simulation_mutex, NULL);
 	if (!data->philos || !data->forks)

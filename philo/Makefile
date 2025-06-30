@@ -1,7 +1,5 @@
 # The name of your project
 NAME = philo
-LIBFT_PATH = ./libft/
-LIBFT_LIB = $(LIBFT_PATH)libft.a
 
 # The C compiler to use
 CC = cc
@@ -30,11 +28,8 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 # A rule to build the project from the .o files
-$(NAME): $(LIBFT_LIB) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT_LIB)
-
-$(LIBFT_LIB):
-	make -C $(LIBFT_PATH) -f Makefile
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -42,12 +37,10 @@ $(LIBFT_LIB):
 # A rule to remove all .o files
 clean:
 	$(RM) $(OBJS)
-	make -C $(LIBFT_PATH) clean
 
 # A rule to remove all .o files and the project
 fclean: clean
 	$(RM) $(NAME)
-	make -C $(LIBFT_PATH) fclean
 
 # A rule to rebuild everything from scratch
 re: fclean all
