@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   philo_tasks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:37:49 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 17:44:52 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:31:46 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	take_forks(t_philo *philo)
+bool take_forks(t_philo *philo)
 {
-	t_data	*data;
+    t_data *data = philo->data;
 
-	data = philo->data;
-	if (is_simulation_over(data) || !philo->alive)
-		return ;
-	pthread_mutex_lock(&philo->first_fork->mutex);
-	print_status(philo, "has taken a fork");
-	if (is_simulation_over(data) || !philo->alive)
-	{
-		pthread_mutex_unlock(&philo->first_fork->mutex);
-		return ;
-	}
-	pthread_mutex_lock(&philo->second_fork->mutex);
-	print_status(philo, "has taken a fork");
+    pthread_mutex_lock(&philo->meal_mutex);
+    bool alive = philo->alive;
+    pthread_mutex_unlock(&philo->meal_mutex);
+
+    if (is_simulation_over(data) || !alive)
+        return false;
+
+    // Cogemos el primer tenedor
+    pthread_mutex_lock(&philo->first_fork->mutex);
+    print_status(philo, "has taken a fork");
+
+    // Cogemos el segundo
+    pthread_mutex_lock(&philo->second_fork->mutex);
+    print_status(philo, "has taken a fork");
+
+    return true;
 }
 
 void	eat(t_philo *philo)
@@ -35,7 +39,9 @@ void	eat(t_philo *philo)
 	t_data	*data;
 
 	data = philo->data;
+	pthread_mutex_lock(&philo->eaten_mutex);
 	philo->meals_counter++;
+	pthread_mutex_unlock(&philo->eaten_mutex);
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal_time = ft_get_time();
 	pthread_mutex_unlock(&philo->meal_mutex);
@@ -44,7 +50,9 @@ void	eat(t_philo *philo)
 	if (philo->meals_counter == data->must_eat)
 	{
 		print_status(philo, "\001\033[32m\002has eaten enough\001\033[0m\002");
+		pthread_mutex_lock(&philo->meal_mutex);
 		philo->full = true;
+		pthread_mutex_unlock(&philo->meal_mutex);
 		if (all_philos_full(data))
 		{
 			pthread_mutex_lock(&data->end_simulation_mutex);

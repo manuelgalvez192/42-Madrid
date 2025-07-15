@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   philo_controller.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:41:04 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 17:39:21 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:59:50 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	print_status(t_philo *philo, const char *message)
+void print_status(t_philo *philo, const char *message)
 {
 	long	timestamp;
 	t_data	*data;
 
 	data = philo->data;
 	pthread_mutex_lock(&data->print_mutex);
-	if (!data->end_simulation)
-	{
-		timestamp = ft_get_time() - data->start_simulation;
-		printf("%ld %d %s\n", timestamp, philo->id, message);
-	}
-	pthread_mutex_unlock(&data->print_mutex);
+	if (!is_simulation_over(data))
+		{
+			timestamp = ft_get_time() - data->start_simulation;
+			printf("%ld %d %s\n", timestamp, philo->id, message);
+		}
+		pthread_mutex_unlock(&data->print_mutex);
 }
 
 long	ft_get_time(void)
@@ -46,21 +46,22 @@ void	smart_sleep(long sleep_time)
 	}
 }
 
-bool	die_check(t_data *data, int i, long time_since_last)
-{
-	pthread_mutex_lock(&data->philos[i].meal_mutex);
-	if (time_since_last > data->time_to_die)
-	{
-		pthread_mutex_lock(&data->end_simulation_mutex);
-		print_status(&data->philos[i], "\001\033[31m\002died\001\033[0m\002");
-		data->end_simulation = true;
-		pthread_mutex_unlock(&data->end_simulation_mutex);
-		data->philos[i].alive = false;
-		pthread_mutex_unlock(&data->philos[i].meal_mutex);
-		return (false);
-	}
-	pthread_mutex_unlock(&data->philos[i].meal_mutex);
-	return (true);
+bool die_check(t_data *data, int i, long time_since_last) {
+    pthread_mutex_lock(&data->philos[i].meal_mutex);
+    if (time_since_last > data->time_to_die) {
+        data->philos[i].alive = false;
+        pthread_mutex_unlock(&data->philos[i].meal_mutex);
+
+        print_status(&data->philos[i], "\001\033[31m\002died\001\033[0m\002");
+
+        pthread_mutex_lock(&data->end_simulation_mutex);
+        data->end_simulation = true;
+        pthread_mutex_unlock(&data->end_simulation_mutex);
+
+        return false;
+    }
+    pthread_mutex_unlock(&data->philos[i].meal_mutex);
+    return true;
 }
 
 void	*monitor(void *arg)
@@ -82,8 +83,10 @@ void	*monitor(void *arg)
 			is_full = data->philos[i].full;
 			pthread_mutex_unlock(&data->philos[i].meal_mutex);
 			if (is_full)
-				break ;
+				continue ;
+			pthread_mutex_lock(&data->philos[i].meal_mutex);
 			time_since_last = ft_get_time() - data->philos[i].last_meal_time;
+			pthread_mutex_unlock(&data->philos[i].meal_mutex);
 			if (!die_check(data, i, time_since_last))
 				return (NULL);
 		}

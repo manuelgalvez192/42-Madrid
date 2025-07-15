@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:26:41 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 17:49:41 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:11:09 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	init_philos(t_data *data)
 		data->philos[i].alive = true;
 		data->philos[i].full = false;
 		data->philos[i].data = data;
+		data->philos[i].last_meal_time = ft_get_time();
+		pthread_mutex_init(&data->philos[i].eaten_mutex, NULL);
 		pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
 		if (data->philos[i].id % 2 == 0)
 		{

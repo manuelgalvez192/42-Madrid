@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:58:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 17:38:29 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:02:22 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_philo
 	t_fork			*second_fork;
 	pthread_t		thread_id;
 	pthread_mutex_t	meal_mutex;
+	pthread_mutex_t eaten_mutex;
 	t_data			*data;
 }	t_philo;
 
@@ -65,7 +66,7 @@ bool	assign_data(t_data *data, const char **argv, int i);
 bool	init_data(t_data *data, const char **argv);
 
 /* --- philo_tasks --- */
-void	take_forks(t_philo *philo);
+bool	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	release_forks(t_philo *philo);
 void	sleep_philo(t_philo *philo);
