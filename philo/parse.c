@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 20:26:41 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/07/15 19:11:09 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:35:34 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,7 @@ void	init_philos(t_data *data)
 	i = 0;
 	while (i < data->num_of_philo)
 	{
-		data->philos[i].id = i + 1;
-		data->philos[i].meals_counter = 0;
-		data->philos[i].alive = true;
-		data->philos[i].full = false;
-		data->philos[i].data = data;
-		data->philos[i].last_meal_time = ft_get_time();
-		pthread_mutex_init(&data->philos[i].eaten_mutex, NULL);
-		pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
+		initialize(data, i);
 		if (data->philos[i].id % 2 == 0)
 		{
 			data->philos[i].first_fork = &data->forks[data->philos[i].id - 1];
@@ -69,6 +62,18 @@ void	init_philos(t_data *data)
 		}
 		i++;
 	}
+}
+
+void	initialize(t_data *data, int i)
+{
+	data->philos[i].id = i + 1;
+	data->philos[i].meals_counter = 0;
+	data->philos[i].alive = true;
+	data->philos[i].full = false;
+	data->philos[i].data = data;
+	data->philos[i].last_meal_time = ft_get_time();
+	pthread_mutex_init(&data->philos[i].eaten_mutex, NULL);
+	pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
 }
 
 bool	assign_data(t_data *data, const char **argv, int i)

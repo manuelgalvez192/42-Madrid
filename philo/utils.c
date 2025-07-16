@@ -6,11 +6,25 @@
 /*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 15:28:59 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 17:42:28 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:42:31 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+bool	is_philo_dead_or_full(t_data *data, int i)
+{
+	long	time_since_last;
+	bool	is_full;
+
+	pthread_mutex_lock(&data->philos[i].meal_mutex);
+	is_full = data->philos[i].full;
+	time_since_last = ft_get_time() - data->philos[i].last_meal_time;
+	pthread_mutex_unlock(&data->philos[i].meal_mutex);
+	if (is_full)
+		return (false);
+	return (!die_check(data, i, time_since_last));
+}
 
 bool	is_numeric(const char *str)
 {
@@ -35,26 +49,6 @@ int	ft_isdigit(int c)
 	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-	size_t	i;
-	size_t	len;
-
-	i = 0;
-	len = size * count;
-	ptr = malloc(count * size);
-	if (ptr == NULL)
-		return (0);
-	while (len > 0)
-	{
-		((unsigned char *)ptr)[i] = '\0';
-		i++;
-		len--;
-	}
-	return ((unsigned char *)ptr);
 }
 
 int	ft_atoi(const char *str)

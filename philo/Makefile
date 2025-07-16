@@ -8,7 +8,7 @@ CC = cc
 ARFLAGS = -rc
 
 # The flags to use with the C compiler
-CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread
 
 # The command to remove files
 RM = rm -f

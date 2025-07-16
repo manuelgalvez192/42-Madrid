@@ -3,35 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   philo_tasks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 00:37:49 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/07/15 19:31:46 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:44:34 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-bool take_forks(t_philo *philo)
+bool	take_forks(t_philo *philo)
 {
-    t_data *data = philo->data;
+	t_data	*data;
+	bool	alive;
 
-    pthread_mutex_lock(&philo->meal_mutex);
-    bool alive = philo->alive;
-    pthread_mutex_unlock(&philo->meal_mutex);
-
-    if (is_simulation_over(data) || !alive)
-        return false;
-
-    // Cogemos el primer tenedor
-    pthread_mutex_lock(&philo->first_fork->mutex);
-    print_status(philo, "has taken a fork");
-
-    // Cogemos el segundo
-    pthread_mutex_lock(&philo->second_fork->mutex);
-    print_status(philo, "has taken a fork");
-
-    return true;
+	data = philo->data;
+	pthread_mutex_lock(&philo->meal_mutex);
+	alive = philo->alive;
+	pthread_mutex_unlock(&philo->meal_mutex);
+	if (is_simulation_over(data) || !alive)
+		return (false);
+	pthread_mutex_lock(&philo->first_fork->mutex);
+	print_status(philo, "has taken a fork");
+	pthread_mutex_lock(&philo->second_fork->mutex);
+	print_status(philo, "has taken a fork");
+	return (true);
 }
 
 void	eat(t_philo *philo)

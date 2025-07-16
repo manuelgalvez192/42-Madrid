@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:50:47 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/06/30 17:49:56 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:20:10 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, const char **argv)
 	if (!data)
 		return (ft_putstr_fd("Error allocating memory for data", 2), 1);
 	if (!check_valid_input(argv))
-		return (1);
+		return (cleanup(data), 1);
 	if (!init_data(data, argv))
-		return (1);
+		return (cleanup(data), 1);
 	start_simulation(data);
 	cleanup(data);
 	return (0);

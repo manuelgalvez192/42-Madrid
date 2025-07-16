@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:58:52 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/07/15 19:02:22 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:57:03 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_philo
 	t_fork			*second_fork;
 	pthread_t		thread_id;
 	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t eaten_mutex;
+	pthread_mutex_t	eaten_mutex;
 	t_data			*data;
 }	t_philo;
 
@@ -63,6 +63,7 @@ typedef struct s_data
 bool	check_valid_input(const char **argv);
 void	init_philos(t_data *data);
 bool	assign_data(t_data *data, const char **argv, int i);
+void	initialize(t_data *data, int i);
 bool	init_data(t_data *data, const char **argv);
 
 /* --- philo_tasks --- */
@@ -83,16 +84,18 @@ void	*monitor(void *arg);
 bool	all_philos_full(t_data *data);
 bool	is_simulation_over(t_data *data);
 void	*simulation(void *arg);
+void	*one_philo_case(t_philo *philo, t_data *data);
 void	start_simulation(t_data *data);
 
 /* --- cleaner --- */
 void	cleanup(t_data *data);
 void	ft_putstr_fd(char *s, int fd);
+void	*ft_calloc(size_t count, size_t size);
 
 /* --- utils --- */
+bool	is_philo_dead_or_full(t_data *data, int i);
 bool	is_numeric(const char *str);
 int		ft_isdigit(int c);
-void	*ft_calloc(size_t count, size_t size);
 int		ft_atoi(const char *str);
 size_t	ft_strlen(const char *c);
 
