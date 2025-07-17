@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 19:22:41 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/07/16 19:42:54 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/17 02:18:25 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <iostream>
 
 int main(int argc, char **argv)
