@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 01:15:21 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/07/17 01:15:21 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:13:45 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void PhoneBook::addContact(Contact contact)
 
 void PhoneBook::searchContacts()
 {
-	int index;
+	std::string index;
 
 	if (contactCount == 0)
 	{
@@ -41,17 +41,19 @@ void PhoneBook::searchContacts()
 	}
 
 	displayContacts();
+	
 	std::cout << "Introduce el indice del contacto que quieres ver: ";
 	std::cin >> index;
 	std::cin.ignore();
 
-	if (index < 0 || index >= contactCount)
+	if(!isdigit(index[0]) || index.length() > 1 || index[0] == '9')
 	{
-		std::cout << " - Indice invalido." << std::endl;
+		std::cout << " - Entrada invalida. Por favor, introduce un numero entre 0 y 8" << std::endl;
+		searchContacts();
 		return ;
 	}
 
-	displayContactDetails(index);
+	displayContactDetails(atoi(index.c_str()));
 }
 
 void PhoneBook::displayContacts()

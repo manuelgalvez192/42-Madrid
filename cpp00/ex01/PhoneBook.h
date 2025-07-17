@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mgalvez- <mgalvez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 01:16:13 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/07/17 01:16:13 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:11:06 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <stdlib.h>
 #include <string>
 #include "Contact.h"
 
