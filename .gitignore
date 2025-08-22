@@ -44,3 +44,6 @@ release/
 *.lock
 node_modules/
 vendor/
+
+# Archivos de visual code
+.vscode/
