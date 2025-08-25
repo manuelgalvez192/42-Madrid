@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.h                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 16:26:28 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/08/04 16:26:28 by mgalvez-         ###   ########.fr       */
+/*   Created: 2025/08/25 00:53:40 by mgalvez-          #+#    #+#             */
+/*   Updated: 2025/08/25 00:53:40 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Harl.h"
 
-#include <string>
-#include <iostream>
-
-class Zombie
+int main(void)
 {
-	public:
-		Zombie(const std::string &name);
-		~Zombie();
-		void announce(void);
+	std::string level = "DEBUG";
 
-	private:
-		std::string name;
-};
+	Harl h;
+	h.complain(level);
 
-Zombie*	newZombie(std::string name);
-void	randomChump( std::string name );
+	return 0;
+}

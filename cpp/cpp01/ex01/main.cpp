@@ -14,13 +14,14 @@
 
 int main()
 {
-	Zombie* horde = NULL;
+	Zombie *horde = zombieHorde(15, "Zombie");
 
-	horde = horde->zombieHorde(15, "Zombie");
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		horde[i].announce();
 	}
+
 	delete[] horde;
+
 	return 0;
 }
