@@ -6,7 +6,7 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 00:02:28 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/10/21 00:02:28 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:34:45 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,4 @@ class ClapTrap {
 		unsigned int hitPoints;
 		unsigned int energyPoints;
 		unsigned int attackDamage;
-
 };

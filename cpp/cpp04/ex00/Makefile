@@ -1,5 +1,5 @@
 # Nombre del proyecto
-NAME = scav
+NAME = Animal
 
 # Compilador de C++
 CXX = c++
@@ -12,9 +12,11 @@ RM = rm -f
 
 # Archivos fuente
 SRCS = main.cpp \
-		ClapTrap.cpp \
-		ScavTrap.cpp
-	   
+		Animal.cpp \
+		Dog.cpp \
+		Cat.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp
 
 # Archivos objeto
 OBJS = $(SRCS:.cpp=.o)

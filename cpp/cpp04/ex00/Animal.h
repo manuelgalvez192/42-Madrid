@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 00:02:26 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/11/04 21:05:54 by mgalvez-         ###   ########.fr       */
+/*   Created: 2025/11/08 17:21:55 by mgalvez-          #+#    #+#             */
+/*   Updated: 2025/11/08 19:24:15 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.h"
+#pragma once
+#include <string>
 
-int main() 
+class Animal
 {
-	std::cout << "# -- TESTING CLAP_TRAP -- #\n";
-	ClapTrap A;
-	ClapTrap B("BOT_B");
-	ClapTrap C;
-	ClapTrap D(B);
-	std::cout << "~ - Object builted - ~\n";
-	A.attack("an enemy");
-	B.attack("another enemy");
-	A.takeDamage(15);
-	B.takeDamage(15);
-	A.beRepaired(5);
-	B.beRepaired(5);
-	D.attack("another another enemy");
-	C = B;
-	
-	return 0;
-}
+	public:
+		Animal();
+		Animal(const Animal& other);
+		Animal &operator=(const Animal &other);
+		virtual ~Animal();
+		std::string getType() const;
+		virtual void makeSound() const;
+
+	protected:
+		std::string type;
+};

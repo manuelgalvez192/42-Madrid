@@ -1,5 +1,5 @@
 # Nombre del proyecto
-NAME = scav
+NAME = frag
 
 # Compilador de C++
 CXX = c++
@@ -13,7 +13,8 @@ RM = rm -f
 # Archivos fuente
 SRCS = main.cpp \
 		ClapTrap.cpp \
-		ScavTrap.cpp
+		ScavTrap.cpp \
+		FragTrap.cpp
 	   
 
 # Archivos objeto

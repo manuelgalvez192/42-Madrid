@@ -6,28 +6,34 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 00:02:26 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/11/04 21:05:54 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:09:37 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.h"
+#include "FragTrap.h"
 
-int main() 
+int main()
 {
-	std::cout << "# -- TESTING CLAP_TRAP -- #\n";
-	ClapTrap A;
-	ClapTrap B("BOT_B");
-	ClapTrap C;
-	ClapTrap D(B);
-	std::cout << "~ - Object builted - ~\n";
-	A.attack("an enemy");
-	B.attack("another enemy");
-	A.takeDamage(15);
-	B.takeDamage(15);
-	A.beRepaired(5);
-	B.beRepaired(5);
-	D.attack("another another enemy");
-	C = B;
+	std::cout << "# -- TESTING FRAG_TRAP -- #\n";
 	
-	return 0;
+	FragTrap E;
+	FragTrap F("BOT_F");
+	FragTrap G;
+	FragTrap H(F);
+	
+	std::cout << "~ - Object builted - ~\n";
+	
+	E.attack("an enemy");
+	F.attack("another enemy");
+	E.takeDamage(15);
+	F.takeDamage(15);
+	E.beRepaired(5);
+	F.beRepaired(5);
+	E.highFivesGuys();
+	F.highFivesGuys();
+	G = F;
+	
+	std::cout << "~ - All method tested - ~\n";
+	
+	return (0);
 }

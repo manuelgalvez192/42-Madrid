@@ -6,13 +6,13 @@
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 00:02:30 by mgalvez-          #+#    #+#             */
-/*   Updated: 2025/10/21 00:02:30 by mgalvez-         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:02:42 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.h"
 
-ClapTrap::ClapTrap() : name("Sin nombre bro"), hitPoints(10), energyPoints(10), attackDamage(0)
+ClapTrap::ClapTrap() : name("NoName"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
 	std::cout << "ClapTrap default constructor called" << std::endl;
 }
