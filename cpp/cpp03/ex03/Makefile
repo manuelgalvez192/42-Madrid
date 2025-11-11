@@ -1,5 +1,5 @@
 # Nombre del proyecto
-NAME = animal
+NAME = diamond
 
 # Compilador de C++
 CXX = c++
@@ -12,11 +12,11 @@ RM = rm -f
 
 # Archivos fuente
 SRCS = main.cpp \
-		Animal.cpp \
-		Dog.cpp \
-		Cat.cpp \
-		WrongAnimal.cpp \
-		WrongCat.cpp
+		ClapTrap.cpp \
+		ScavTrap.cpp \
+		FragTrap.cpp \
+		DiamondTrap.cpp
+	   
 
 # Archivos objeto
 OBJS = $(SRCS:.cpp=.o)

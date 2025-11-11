@@ -1,5 +1,5 @@
 # Nombre del proyecto
-NAME = Animal
+NAME = animal
 
 # Compilador de C++
 CXX = c++
