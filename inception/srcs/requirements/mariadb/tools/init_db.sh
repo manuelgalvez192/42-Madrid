@@ -18,22 +18,18 @@ echo "Starting MariaDB initialization..."
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "Initializing data directory..."
     mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
-fi
 
-#start the server
-echo "Starting temporary MariaDB server for setup..."
-mysqld --skip-networking --socket=/run/mysqld/mysqld.sock --user=mysql & pid="$!"
+    echo "Starting temporary MariaDB server for setup..."
+    mysqld --skip-networking --socket=/run/mysqld/mysqld.sock --user=mysql & pid="$!"
 
-#wait for mariadb to be ready
-echo "Waiting for MariaDB to be ready..."
-until mysqladmin --socket=/run/mysqld/mysqld.sock ping >/dev/null 2>&1; do
-    sleep 1
-done
-echo "MariaDB is ready!"
+    echo "Waiting for MariaDB to be ready..."
+    until mysqladmin --socket=/run/mysqld/mysqld.sock ping >/dev/null 2>&1; do
+        sleep 1
+    done
+    echo "MariaDB is ready!"
 
-#run setup sql: create database and user
-echo "Running setup SQL..."
-mysql --socket=/run/mysqld/mysqld.sock -u root << EOF
+    echo "Running setup SQL..."
+    mysql --socket=/run/mysqld/mysqld.sock -u root << EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};
 CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
@@ -41,13 +37,10 @@ GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-#shut down temporary server
-echo "Shutting down temporary MariaDB..."
-mysqladmin --socket=/run/mysqld/mysqld.sock -u root -p"${MYSQL_ROOT_PASSWORD}" shutdown
+    echo "Shutting down temporary MariaDB..."
+    mysqladmin --socket=/run/mysqld/mysqld.sock -u root -p"${MYSQL_ROOT_PASSWORD}" shutdown
+    wait "$pid" || true
+fi
 
-#wait for shutdown
-wait "$pid" || true
-
-#start mariadb normally
 echo "Initialization complete, starting MariaDB..."
 exec mysqld --user=mysql --datadir=/var/lib/mysql --socket=/run/mysqld/mysqld.sock
